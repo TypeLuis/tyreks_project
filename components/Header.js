@@ -11,14 +11,19 @@ const Header = () => {
         router.push(`/${e.target.textContent}`)
     }
     return (
-        <nav className={classes.navbar}>
-            <ul>
-                <li onClick={(e) => { navigator(e) }}>Home</li>
-                <li>Shop</li>
-                <li>Donate</li>
-                <li>Videos</li>
-            </ul>
-        </nav>
+        <>
+            <nav className={classes.navbar}>
+                <ul>
+                    <li onClick={(e) => { navigator(e) }}>Home</li>
+                    <li onClick={(e) => { navigator(e) }}>Shop</li>
+                    <li onClick={(e) => { navigator(e) }}>Donate</li>
+                    <li onClick={(e) => { navigator(e) }}>Videos</li>
+                </ul>
+            </nav>
+
+            <div className={classes.spacer}></div>
+
+        </>
     )
 }
 
