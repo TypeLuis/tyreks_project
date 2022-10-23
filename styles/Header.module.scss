@@ -3,6 +3,9 @@
     background-color: green;
     position: fixed;
     width: 100%;
+    height: 65px;
+    // margin-block: 65px;
+    // margin-bottom: 65px;
 
     ul {
         padding: 0;
@@ -17,8 +20,13 @@
             transition: .5s ease-in;
 
             &:hover {
-                color: aqua;
                 cursor: pointer;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: aqua;
             }
         }
 
