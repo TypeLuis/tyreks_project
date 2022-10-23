@@ -1,0 +1,26 @@
+.navbar {
+    // padding: 0;
+    background-color: green;
+    position: fixed;
+    width: 100%;
+
+    ul {
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        font-size: larger;
+
+        li {
+            transition: .5s ease-in;
+
+            &:hover {
+                color: aqua;
+                cursor: pointer;
+            }
+        }
+
+    }
+}
