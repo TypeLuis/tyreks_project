@@ -8,7 +8,8 @@ const Header = () => {
 
     const navigator = (e) => {
         // console.log(e)
-        router.push(`/${e.target.textContent}`)
+        e.target.textContent === 'Home' ? router.push(`/`) : router.push(`/${e.target.textContent}`)
+        // router.push(`/${e.target.textContent}`)
     }
     return (
         <>
