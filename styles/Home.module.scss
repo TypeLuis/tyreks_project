@@ -28,14 +28,15 @@
   flex-grow: 1;
 }
 
-.title a {
+.title span {
   color: #0070f3;
   text-decoration: none;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
+.title span:hover,
+.title span:focus,
+.title span:active {
+  cursor: pointer;
   text-decoration: underline;
 }
 
@@ -116,13 +117,16 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
   .card,
   .footer {
     border-color: #222;
   }
+
   .code {
     background: #111;
   }
+
   .logo img {
     filter: invert(1);
   }
