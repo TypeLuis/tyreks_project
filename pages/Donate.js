@@ -5,7 +5,7 @@ const Donate = () => {
     return (
         <div className={classes['Donate_Container']}>
             <h1>Donate</h1>
-            <a className={classes['Donation_Box']} href="https://donorbox.org/test_nextjs">Donate</a>
+            <a className={classes['Donation_Box']} href="https://donorbox.org/test_nextjs" target="_blank" rel="noopener noreferrer">Donate</a>
         </div>
     )
 }
