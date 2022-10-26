@@ -10,6 +10,7 @@ const Videos = () => {
         'https://www.youtube.com/watch?v=3Gz-VEdWnx0',
         'https://www.youtube.com/watch?v=LIDABfQvkkc'
     ]
+    console.log(process.env.YTAPI)
     return (
         <div className={classes.main}>
 
@@ -20,7 +21,7 @@ const Videos = () => {
 
                     return (
                         <div className={classes['Iframe_Container']}>
-                            <iframe src={url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src={url} allowfullscreen title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
                         </div>
                     )
                 })}
