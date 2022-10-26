@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 import classes from '../styles/Videos.module.scss'
 
@@ -10,6 +11,12 @@ const Videos = () => {
         'https://www.youtube.com/watch?v=3Gz-VEdWnx0',
         'https://www.youtube.com/watch?v=LIDABfQvkkc'
     ]
+
+    const test = async (id) => {
+        const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&fields=items(id%2Csnippet)&key=${process.env.YTAPI}`)
+
+        return response.data.items[0]
+    }
     return (
         <div className={classes.main}>
 
@@ -17,6 +24,10 @@ const Videos = () => {
 
                 {links.map((item, i) => {
                     const url = item.replace("watch?v=", "embed/")
+                    const id = item.split('=')[1]
+                    // console.log(id)
+                    const response = test(id)
+
 
                     return (
                         <div className={classes['Iframe_Container']}>
