@@ -46,6 +46,7 @@ const Videos = (props) => {
 
 export const getStaticProps = async () => {
 
+    // Function that gets Info from youtube videos through the google api. Adds 
     const YouTube_Video_Info = async () => {
 
         const links = [
