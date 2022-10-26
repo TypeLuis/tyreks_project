@@ -11,12 +11,18 @@ const Videos = () => {
         'https://www.youtube.com/watch?v=LIDABfQvkkc'
     ]
     return (
-        <div>
+        <div className={classes.main}>
 
             <div className={classes.grid}>
 
                 {links.map((item, i) => {
-                    console.log(item)
+                    const url = item.replace("watch?v=", "embed/")
+
+                    return (
+                        <div className={classes['Iframe_Container']}>
+                            <iframe src={url}></iframe>
+                        </div>
+                    )
                 })}
 
             </div>
