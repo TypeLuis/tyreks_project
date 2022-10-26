@@ -54,25 +54,32 @@ export const getStaticProps = async () => {
         'https://www.youtube.com/watch?v=3Gz-VEdWnx0',
         'https://www.youtube.com/watch?v=LIDABfQvkkc'
     ]
-    const test = async (id) => {
-        const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&fields=items(id%2Csnippet)&key=${process.env.YTAPI}`)
 
-        return response
-    }
+    const promises = []
 
-    let obj = new Object
+    links.map((item, i) => {
+        const id = item.split('=')[1]
 
-    links.map(async (item, i) => {
-        const response = await test(item.split('=')[1])
-        // console.log(response.data.items[0])
-        // Object.assign(obj, { hi: response.data.items[0] });
-        obj[i] = item
+        const promise = new Promise(async (resolve, reject) => {
+            const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&fields=items(id%2Csnippet)&key=${process.env.YTAPI}`)
+
+            resolve(response.data.items[0])
+
+            // response.then((response) => {
+            //     resolve(response.data.items[0])
+            // }).catch(e => reject(e))
+        })
+
+        promises.push(promise);
+
     })
 
-    console.log(obj)
+    const result = await Promise.all(promises).then(r => r).catch(error => { throw error })
+    console.log(result.length)
+
     return {
         'props': {
-            'test': obj,
+            'test': result,
         },
     }
 }
