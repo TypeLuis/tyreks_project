@@ -46,40 +46,48 @@ const Videos = (props) => {
 
 export const getStaticProps = async () => {
 
-    const links = [
-        'https://www.youtube.com/watch?v=dmtK7RiIz1A',
-        'https://www.youtube.com/watch?v=a5elivsTUKg',
-        'https://www.youtube.com/watch?v=5svxuS3L9_s',
-        'https://www.youtube.com/watch?v=wdOra_ckb-s',
-        'https://www.youtube.com/watch?v=3Gz-VEdWnx0',
-        'https://www.youtube.com/watch?v=LIDABfQvkkc'
-    ]
+    const YouTube_Video_Info = async () => {
 
-    const promises = []
+        const links = [
+            'https://www.youtube.com/watch?v=dmtK7RiIz1A',
+            'https://www.youtube.com/watch?v=a5elivsTUKg',
+            'https://www.youtube.com/watch?v=5svxuS3L9_s',
+            'https://www.youtube.com/watch?v=wdOra_ckb-s',
+            'https://www.youtube.com/watch?v=3Gz-VEdWnx0',
+            'https://www.youtube.com/watch?v=LIDABfQvkkc'
+        ]
 
-    links.map((item, i) => {
-        const id = item.split('=')[1]
+        const promises = []
 
-        const promise = new Promise(async (resolve, reject) => {
-            const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&fields=items(id%2Csnippet)&key=${process.env.YTAPI}`)
+        links.map((item, i) => {
+            const id = item.split('=')[1]
 
-            resolve(response.data.items[0])
+            // https://stackoverflow.com/questions/68094164/add-property-to-array-of-obejct-with-async-function
+            const promise = new Promise(async (resolve, reject) => {
+                try {
+                    const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&fields=items(id%2Csnippet)&key=${process.env.YTAPI}`)
 
-            // response.then((response) => {
-            //     resolve(response.data.items[0])
-            // }).catch(e => reject(e))
+                    resolve(response.data.items[0])
+
+                } catch (error) {
+                    reject(error)
+                }
+            })
+
+            promises.push(promise);
+
         })
 
-        promises.push(promise);
+        const result = await Promise.all(promises).then(r => r).catch(error => { throw error })
 
-    })
+        return result
+    }
 
-    const result = await Promise.all(promises).then(r => r).catch(error => { throw error })
-    console.log(result.length)
+    // console.log(result.length)
 
     return {
         'props': {
-            'test': result,
+            'test': YouTube_Video_Info(),
         },
     }
 }
