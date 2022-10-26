@@ -20,7 +20,7 @@ const Videos = () => {
 
                     return (
                         <div className={classes['Iframe_Container']}>
-                            <iframe src={url}></iframe>
+                            <iframe src={url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     )
                 })}
