@@ -10,7 +10,6 @@ const Videos = () => {
         'https://www.youtube.com/watch?v=3Gz-VEdWnx0',
         'https://www.youtube.com/watch?v=LIDABfQvkkc'
     ]
-    console.log(process.env.YTAPI)
     return (
         <div className={classes.main}>
 
