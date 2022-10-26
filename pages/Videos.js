@@ -23,11 +23,11 @@ const Videos = (props) => {
 
             <div className={classes.grid}>
 
-                {links.map((item, i) => {
-                    const url = item.replace("watch?v=", "embed/")
-                    const id = item.split('=')[1]
+                {props.test.map((item, i) => {
+                    const url = `https://www.youtube.com/embed/${item.id}`
+                    // const url = item.replace("watch?v=", "embed/")
+                    // const id = item.split('=')[1]
                     // console.log(id)
-                    const response = test(id)
                     // console.log(response)
 
                     return (
