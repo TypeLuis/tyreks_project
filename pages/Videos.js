@@ -1,4 +1,5 @@
 import React from 'react'
+import classes from '../styles/Videos.module.scss'
 
 const Videos = () => {
     const links = [
@@ -12,6 +13,13 @@ const Videos = () => {
     return (
         <div>
 
+            <div className={classes.grid}>
+
+                {links.map((item, i) => {
+                    console.log(item)
+                })}
+
+            </div>
 
         </div>
     )
