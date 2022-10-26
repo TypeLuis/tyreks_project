@@ -84,8 +84,6 @@ export const getStaticProps = async () => {
         return result
     }
 
-    // console.log(result.length)
-
     return {
         'props': {
             'test': YouTube_Video_Info(),
