@@ -2,7 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import classes from '../styles/Videos.module.scss'
 
-const Videos = () => {
+const Videos = (props) => {
     const links = [
         'https://www.youtube.com/watch?v=dmtK7RiIz1A',
         'https://www.youtube.com/watch?v=a5elivsTUKg',
@@ -17,6 +17,7 @@ const Videos = () => {
 
         return response
     }
+    console.log(props.test)
     return (
         <div className={classes.main}>
 
@@ -59,16 +60,16 @@ export const getStaticProps = async () => {
         return response
     }
 
-    const obj = {}
+    let obj = new Object
 
     links.map(async (item, i) => {
         const response = await test(item.split('=')[1])
-        console.log(response.data.items[0])
-        // obj[i] = response
+        // console.log(response.data.items[0])
+        // Object.assign(obj, { hi: response.data.items[0] });
+        obj[i] = item
     })
 
-    // console.log(obj)
-
+    console.log(obj)
     return {
         'props': {
             'test': obj,
