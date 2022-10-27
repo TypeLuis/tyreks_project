@@ -10,25 +10,11 @@ const Videos = (props) => {
 
     const channelName = props.result ? props.result[0].snippet.videoOwnerChannelTitle : ''
     return (
-        // <div>hi</div>
         <div className={classes.main}>
             <h1>{channelName}</h1>
             <div className={classes.grid}>
 
-                {props.result && props.result.map((item, i) => {
-                    // const videoId = item.id
-                    // const url = `https://www.youtube.com/embed/${videoId}`
-                    // const title = item.snippet.title
-                    // const description = item.snippet.description
-                    return (
-                        <VideoContainer info={item} />
-                        // <div className={classes['Iframe_Container']}>
-                        //     <h3>{title}</h3>
-                        //     <iframe src={url} allowFullScreen title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
-                        //     <h4>More Info ↓</h4>
-                        // </div>
-                    )
-                })}
+                {props.result && props.result.map((item, i) => <VideoContainer info={item} />)}
 
             </div>
 
