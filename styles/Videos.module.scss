@@ -22,6 +22,7 @@
             text-decoration: none;
             border: 1px solid #eaeaea;
             border-radius: 10px;
+            width: 650px;
             max-width: 650px;
 
 
@@ -40,6 +41,8 @@
     }
 
     @media (max-width: 600px) {
+        width: min-content;
+
         h1 {
             text-align: center;
         }
@@ -54,27 +57,4 @@
         }
     }
 
-    @media screen and (max-width : 500px) {
-        h1 {
-            text-align: center;
-            position: relative;
-            left: 50px;
-        }
-
-        .grid {
-            margin-left: 25%;
-        }
-    }
-
-    @media screen and (max-width : 430px) {
-        h1 {
-            text-align: center;
-            position: relative;
-            left: 100px;
-        }
-
-        .grid {
-            margin-left: 50%;
-        }
-    }
 }
