@@ -9,15 +9,11 @@ const VideoContainer = (props) => {
     const [infoHeight, setInfoHeight] = useState(null);
     const infoRef = useRef(null)
 
+    // changes More-info div height depending on click
     useEffect(() => {
-        setInfoHeight(0)
-    }, [])
+        clicked ? setInfoHeight(infoRef.current?.scrollHeight) : setInfoHeight(0)
+    }, [clicked])
 
-    const calcHeight = () => {
-
-        const height = clicked ? infoRef.current?.scrollHeight : 0
-        setInfoHeight(height)
-    }
     const info = props.info
     const videoId = info.id
     const url = `https://www.youtube.com/embed/${videoId}`
@@ -28,7 +24,7 @@ const VideoContainer = (props) => {
             <h3>{title}</h3>
             <iframe src={url} allowFullScreen title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
             <div className={`${classes['info_container']}`}>
-                <h4 onClick={() => { setClicked(!clicked); console.log(infoRef); calcHeight() }}>
+                <h4 onClick={() => { setClicked(!clicked); console.log(infoRef); }}>
                     {clicked ?
                         <>Less Info ↑</>
                         :
