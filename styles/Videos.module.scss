@@ -38,15 +38,6 @@
             .more-info {
                 transition: height 1s ease-in;
                 overflow: hidden;
-
-                &.clicked {
-                    // display: block;
-                    // max-height: 500px;
-                }
-
-                &.not_clicked {
-                    // display: none;
-                }
             }
 
             h4 {
