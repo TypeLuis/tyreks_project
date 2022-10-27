@@ -29,31 +29,36 @@
             width: min-content;
             max-width: 650px;
 
+            .info_container {
+                display: flex;
+                flex-direction: column-reverse;
+            }
+
             .more-info {
-                transition: height .5s ease-in;
+                transition: height 1s ease-in;
 
                 &.clicked {
-                    display: block;
-                    height: max-content;
+                    // display: block;
+                    // max-height: 500px;
                 }
 
                 &.not_clicked {
-                    display: none;
-                    height: 0;
+                    // display: none;
                 }
             }
 
             h4 {
-                margin: 10px auto;
+                margin: auto;
+                padding: 10px 5px;
                 font-size: large;
                 transition: .5s ease-in;
                 position: relative;
+                height: max-content;
                 width: max-content;
 
                 &:hover {
                     cursor: pointer;
                     color: green;
-                    margin-top: 25px;
                 }
 
             }
@@ -68,9 +73,45 @@
                 height: 315px;
             }
 
+            &.not_clicked {
+
+                .more-info {
+
+                    overflow: hidden;
+                    // max-height: 0;
+                }
+
+                h4 {
+                    // transition-delay: margin-top 2s;
+
+                    &:hover+.more-info {
+                        // max-height: 30px;
+
+                    }
+                }
+            }
+
+            &.clicked {
+                .more-info {
+                    // height: 500px;
+                    // max-height: 500px;
+                }
+
+                h4 {
+                    &:hover+.more-info {
+                        // overflow: hidden;
+                        // max-height: 0;
+                        // max-height: 70px;
+                        // margin-top: 25px;
+
+                    }
+                }
+            }
         }
 
     }
+
+
 
     @media (max-width: 600px) {
         width: min-content;
