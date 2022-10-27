@@ -8,7 +8,7 @@ const Videos = (props) => {
 
     console.log(props.result)
 
-    const channelName = props.result ? props.result[0].snippet.videoOwnerChannelTitle : ''
+    const channelName = props.result ? props.result[0].snippet.channelTitle : ''
     return (
         <div className={classes.main}>
             <h1>{channelName}</h1>
