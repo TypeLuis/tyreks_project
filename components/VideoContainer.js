@@ -18,9 +18,10 @@ const VideoContainer = (props) => {
         const iframe = infoRef.current?.parentNode.parentNode
         iframe.style.border = '1px solid green'
         if (clicked) {
-            console.log(iframe.style)
+            setInfoHeight(infoHeight - 50)
         }
         else if (!clicked) {
+            setInfoHeight(50)
 
         }
     }
@@ -29,10 +30,10 @@ const VideoContainer = (props) => {
         const iframe = infoRef.current?.parentNode.parentNode
         iframe.style.border = '1px solid #eaeaea'
         if (clicked) {
-            console.log(infoRef)
+            setInfoHeight(infoHeight + 50)
         }
         else if (!clicked) {
-
+            setInfoHeight(0)
         }
     }
 
