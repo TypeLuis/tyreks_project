@@ -5,17 +5,21 @@ import classes from '../styles/Videos.module.scss'
 const Videos = (props) => {
 
     console.log(props.result)
+    const channelName = props.result ? props.result[0].snippet.videoOwnerChannelTitle : ''
     return (
         <div className={classes.main}>
-
+            <h1>{channelName}</h1>
             <div className={classes.grid}>
 
                 {props.result && props.result.map((item, i) => {
                     const videoId = item.contentDetails.videoId
                     const url = `https://www.youtube.com/embed/${videoId}`
-
+                    const title = item.snippet.title
+                    const description = item.snippet.description
+                    // console.log(item)
                     return (
                         <div className={classes['Iframe_Container']}>
+                            {/* <h3>{item}</h3> */}
                             <iframe src={url} allowFullScreen title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
                         </div>
                     )
