@@ -5,14 +5,16 @@ import classes from '../styles/Videos.module.scss'
 const Videos = (props) => {
 
     console.log(props.result)
+
     const channelName = props.result ? props.result[0].snippet.videoOwnerChannelTitle : ''
     return (
+        // <div>hi</div>
         <div className={classes.main}>
             <h1>{channelName}</h1>
             <div className={classes.grid}>
 
                 {props.result && props.result.map((item, i) => {
-                    const videoId = item.contentDetails.videoId
+                    const videoId = item.id
                     const url = `https://www.youtube.com/embed/${videoId}`
                     const title = item.snippet.title
                     const description = item.snippet.description
@@ -77,13 +79,27 @@ export const getStaticProps = async () => {
 
             // https://stackoverflow.com/questions/18953499/youtube-api-to-fetch-all-videos-on-a-channel
             // https://stackoverflow.com/questions/14366648/how-can-i-get-a-channel-id-from-youtube
-            const response = await axios.get(`https://www.googleapis.com/youtube/v3/channels?id=UC-Y-ZFvEtINXQADTc3_3C9Q&key=${process.env.YTAPI}&part=snippet,contentDetails,statistics`)
+            const channelResponse = await axios.get(`https://www.googleapis.com/youtube/v3/channels?id=UC-Y-ZFvEtINXQADTc3_3C9Q&key=${process.env.YTAPI}&part=snippet,contentDetails,statistics`)
 
-            const uploadsID = response.data.items[0].contentDetails.relatedPlaylists.uploads
+            // console.log(channelResponse)
 
-            const secondResponse = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=50&playlistId=${uploadsID}&key=${process.env.YTAPI}`)
+            const uploadsID = channelResponse.data.items[0].contentDetails.relatedPlaylists.uploads
 
-            const results = secondResponse.data.items
+            const playListResponse = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId=${uploadsID}&key=${process.env.YTAPI}`)
+
+
+
+            const playListItems = playListResponse.data.items
+
+            let videoIdList = ''
+            playListItems.map((item, i) => {
+                const videoId = item.contentDetails.videoId
+                playListItems.length - 1 === i ? videoIdList += `${videoId}` : videoIdList += `${videoId},`
+            })
+
+            const videoResponse = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${videoIdList}&key=${process.env.YTAPI}`)
+
+            const results = videoResponse.data.items
 
             return results
         } catch (error) {
