@@ -73,7 +73,7 @@ export const getStaticProps = async () => {
         return result
     }
 
-
+    // Function that utilizes 3 response from Google's YouTube API to get video uploads with all info needed from YouTube Channel
     const Get_Uploads_From_YT_Channel = async () => {
         try {
 
@@ -81,16 +81,13 @@ export const getStaticProps = async () => {
             // https://stackoverflow.com/questions/14366648/how-can-i-get-a-channel-id-from-youtube
             const channelResponse = await axios.get(`https://www.googleapis.com/youtube/v3/channels?id=UC-Y-ZFvEtINXQADTc3_3C9Q&key=${process.env.YTAPI}&part=snippet,contentDetails,statistics`)
 
-            // console.log(channelResponse)
+            const playListId = channelResponse.data.items[0].contentDetails.relatedPlaylists.uploads
 
-            const uploadsID = channelResponse.data.items[0].contentDetails.relatedPlaylists.uploads
-
-            const playListResponse = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId=${uploadsID}&key=${process.env.YTAPI}`)
-
-
+            const playListResponse = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId=${playListId}&key=${process.env.YTAPI}`)
 
             const playListItems = playListResponse.data.items
 
+            // https://stackoverflow.com/questions/63217617/how-to-get-views-and-comment-count-when-using-youtube-data-api-v3-playlistitems
             let videoIdList = ''
             playListItems.map((item, i) => {
                 const videoId = item.contentDetails.videoId
