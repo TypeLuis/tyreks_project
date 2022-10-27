@@ -4,14 +4,15 @@ import classes from '../styles/Videos.module.scss'
 
 const Videos = (props) => {
 
-    console.log(props.test)
+    console.log(props.result)
     return (
         <div className={classes.main}>
 
             <div className={classes.grid}>
 
-                {props.test && props.test.map((item, i) => {
-                    const url = `https://www.youtube.com/embed/${item.id}`
+                {props.result && props.result.map((item, i) => {
+                    const videoId = item.contentDetails.videoId
+                    const url = `https://www.youtube.com/embed/${videoId}`
 
                     return (
                         <div className={classes['Iframe_Container']}>
@@ -67,29 +68,32 @@ export const getStaticProps = async () => {
         return result
     }
 
-    // https://stackoverflow.com/questions/18953499/youtube-api-to-fetch-all-videos-on-a-channel
-    const test = async () => {
+
+    const Get_Uploads_From_YT_Channel = async () => {
         try {
 
+            // https://stackoverflow.com/questions/18953499/youtube-api-to-fetch-all-videos-on-a-channel
+            // https://stackoverflow.com/questions/14366648/how-can-i-get-a-channel-id-from-youtube
             const response = await axios.get(`https://www.googleapis.com/youtube/v3/channels?id=UC-Y-ZFvEtINXQADTc3_3C9Q&key=${process.env.YTAPI}&part=snippet,contentDetails,statistics`)
 
             const uploadsID = response.data.items[0].contentDetails.relatedPlaylists.uploads
 
             const secondResponse = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=50&playlistId=${uploadsID}&key=${process.env.YTAPI}`)
 
-            console.log(secondResponse.data.items)
+            const results = secondResponse.data.items
+
+            return results
         } catch (error) {
             console.log(error)
         }
     }
 
-    // console.log(test)
-    test()
     // const result = await YouTube_Video_Info()
 
     return {
         'props': {
-            // 'test': result,
+            'test': await YouTube_Video_Info(),
+            'result': await Get_Uploads_From_YT_Channel()
         },
     }
 }
