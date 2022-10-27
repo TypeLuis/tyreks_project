@@ -94,8 +94,6 @@ export const getStaticProps = async () => {
         }
     }
 
-    // const result = await YouTube_Video_Info()
-
     return {
         'props': {
             'test': await YouTube_Video_Info(),
