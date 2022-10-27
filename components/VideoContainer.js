@@ -14,6 +14,28 @@ const VideoContainer = (props) => {
         clicked ? setInfoHeight(infoRef.current?.scrollHeight) : setInfoHeight(0)
     }, [clicked])
 
+    const handleMouseOver = () => {
+        const iframe = infoRef.current?.parentNode.parentNode
+        iframe.style.border = '1px solid green'
+        if (clicked) {
+            console.log(iframe.style)
+        }
+        else if (!clicked) {
+
+        }
+    }
+
+    const handleMouseOut = () => {
+        const iframe = infoRef.current?.parentNode.parentNode
+        iframe.style.border = '1px solid #eaeaea'
+        if (clicked) {
+            console.log(infoRef)
+        }
+        else if (!clicked) {
+
+        }
+    }
+
     const info = props.info
     const videoId = info.id
     const url = `https://www.youtube.com/embed/${videoId}`
@@ -24,7 +46,7 @@ const VideoContainer = (props) => {
             <h3>{title}</h3>
             <iframe src={url} allowFullScreen title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
             <div className={`${classes['info_container']}`}>
-                <h4 onClick={() => { setClicked(!clicked); console.log(infoRef); }}>
+                <h4 onMouseOver={() => { handleMouseOver() }} onMouseOut={() => { handleMouseOut() }} onClick={() => { setClicked(!clicked); }}>
                     {clicked ?
                         <>Less Info ↑</>
                         :

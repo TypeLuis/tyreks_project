@@ -19,6 +19,7 @@
         max-width: 1500px;
 
         .Iframe_Container {
+            transition: border .5s ease-in;
             margin: 1rem;
             padding: 1.5rem;
             text-align: center;
