@@ -45,32 +45,16 @@
     }
 
     @media (max-width: 600px) {
-        // align-items: center;
-
-        // margin-left: 70%;
         h1 {
             text-align: center;
-            // position: relative;
-            // left: 100px;
         }
 
-        // .grid {
-        //     margin-left: 50%;
-        // }
-
-        // max-width: 450px;
         .Iframe_Container {
-
-            // width: Max(70%, 450px);
-            // max-width: 450px;
             width: 550px;
-            // margin-left: 1000px;
-
 
             iframe {
                 max-width: 450px;
                 max-height: 400px;
-                // max-width: 500px;
             }
         }
     }
