@@ -73,7 +73,11 @@ export const getStaticProps = async () => {
 
             const response = await axios.get(`https://www.googleapis.com/youtube/v3/channels?id=UC-Y-ZFvEtINXQADTc3_3C9Q&key=${process.env.YTAPI}&part=snippet,contentDetails,statistics`)
 
-            console.log(response.data.items[0].contentDetails.relatedPlaylists.uploads)
+            const uploadsID = response.data.items[0].contentDetails.relatedPlaylists.uploads
+
+            const secondResponse = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=50&playlistId=${uploadsID}&key=${process.env.YTAPI}`)
+
+            console.log(secondResponse.data.items)
         } catch (error) {
             console.log(error)
         }
