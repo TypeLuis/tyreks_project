@@ -74,41 +74,6 @@
                 width: 560px;
                 height: 315px;
             }
-
-            &.not_clicked {
-
-                .more-info {
-
-                    // overflow: hidden;
-                    // max-height: 0;
-                }
-
-                h4 {
-                    // transition-delay: margin-top 2s;
-
-                    &:hover+.more-info {
-                        // max-height: 30px;
-
-                    }
-                }
-            }
-
-            &.clicked {
-                .more-info {
-                    // height: 500px;
-                    // max-height: 500px;
-                }
-
-                h4 {
-                    &:hover+.more-info {
-                        // overflow: hidden;
-                        // max-height: 0;
-                        // max-height: 70px;
-                        // margin-top: 25px;
-
-                    }
-                }
-            }
         }
 
     }
