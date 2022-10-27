@@ -29,6 +29,20 @@
             width: min-content;
             max-width: 650px;
 
+            .more-info {
+                transition: height .5s ease-in;
+
+                &.clicked {
+                    display: block;
+                    height: max-content;
+                }
+
+                &.not_clicked {
+                    display: none;
+                    height: 0;
+                }
+            }
+
             h4 {
                 margin: 10px auto;
                 font-size: large;
@@ -39,7 +53,7 @@
                 &:hover {
                     cursor: pointer;
                     color: green;
-                    margin-bottom: 25px;
+                    margin-top: 25px;
                 }
 
             }
