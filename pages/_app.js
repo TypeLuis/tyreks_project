@@ -8,11 +8,16 @@ function MyApp({ Component, pageProps }) {
       <Header />
       <div className={classes.Page_Content}>
 
-        <div>
+        <div className={classes.Left}>
 
         </div>
-        <Component {...pageProps} />
-        <div>
+
+        <div className={classes.middle}>
+
+          <Component {...pageProps} />
+        </div>
+
+        <div className={classes.right}>
 
         </div>
 
