@@ -15,9 +15,12 @@ const VideoContainer = (props) => {
     }
 
     // subtracts margin height from entire height to get height of the element (32 is the margin height). this is done to achive hide and show functions
-    useEffect(() => {
+    const handleInfoClick = () => {
         const scrollHeight = infoRef.current?.scrollHeight
         clicked ? isTouchDevice() ? setInfoHeight(scrollHeight) : setInfoHeight(scrollHeight - 32) : setInfoHeight(0)
+    }
+    useEffect(() => {
+        handleInfoClick()
     }, [clicked])
 
 
