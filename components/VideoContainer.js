@@ -6,12 +6,12 @@ const VideoContainer = (props) => {
     const [clicked, setClicked] = useState(false)
     const checkclicked = clicked ? 'clicked' : 'not_clicked'
 
-    const [infoHeight, setInfoHeight] = useState(null);
     const infoRef = useRef(null)
+    const [infoHeight, setInfoHeight] = useState(infoRef);
 
-    // changes More-info div height depending on click
     useEffect(() => {
-        clicked ? setInfoHeight(infoRef.current?.scrollHeight) : setInfoHeight(0)
+        // subtracts margin height from actual height
+        clicked ? setInfoHeight(infoRef.current?.scrollHeight - 32) : setInfoHeight(0)
     }, [clicked])
 
     const handleMouseOver = () => {

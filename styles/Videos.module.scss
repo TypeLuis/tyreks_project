@@ -33,6 +33,11 @@
             .more-info {
                 transition: height 1s ease-in;
                 overflow: hidden;
+                margin-block: 16px;
+
+                p {
+                    margin: 0;
+                }
             }
 
             h4 {
