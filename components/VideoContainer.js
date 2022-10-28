@@ -14,28 +14,41 @@ const VideoContainer = (props) => {
         clicked ? setInfoHeight(infoRef.current?.scrollHeight - 32) : setInfoHeight(0)
     }, [clicked])
 
-    const handleMouseOver = () => {
-        const iframe = infoRef.current?.parentNode
-        iframe.style.border = '1px solid green'
-        if (clicked) {
-            setInfoHeight(infoHeight - 50)
-        }
-        else if (!clicked) {
-            setInfoHeight(50)
+    // function checks if device is touchscreen
+    const isTouchDevice = () => {
+        return window.ontouchstart !== undefined;
+    }
 
+    const handleMouseOver = () => {
+        if (!isTouchDevice()) {
+
+            const iframe = infoRef.current?.parentNode
+            iframe.style.border = '1px solid green'
+            if (clicked) {
+                setInfoHeight(infoHeight - 50)
+            }
+            else if (!clicked) {
+                setInfoHeight(50)
+
+            }
         }
     }
 
     const handleMouseOut = () => {
-        const iframe = infoRef.current?.parentNode
-        iframe.style.border = '1px solid #eaeaea'
-        if (clicked) {
-            setInfoHeight(infoHeight + 50)
-        }
-        else if (!clicked) {
-            setInfoHeight(0)
+        if (!isTouchDevice()) {
+
+            const iframe = infoRef.current?.parentNode
+            iframe.style.border = '1px solid #eaeaea'
+            if (clicked) {
+                setInfoHeight(infoHeight + 50)
+            }
+            else if (!clicked) {
+                console.log(isTouchDevice())
+                setInfoHeight(0)
+            }
         }
     }
+
 
     const info = props.info
     const videoId = info.id
@@ -43,6 +56,8 @@ const VideoContainer = (props) => {
     const title = info.snippet.title
     const description = info.snippet.description
     const statistics = info.statistics
+    const dateInfo = info.snippet.publishedAt.split('T')[0].split('-')
+    const date = `${dateInfo[1]}/${dateInfo[2]}/${dateInfo[0]}`
 
     return (
         <div className={`${classes['Iframe_Container']} ${classes[checkclicked]}`}>
@@ -55,6 +70,12 @@ const VideoContainer = (props) => {
                 <p>
                     description: {description}
                 </p>
+                <div>
+                    <span>Released: {date}</span>
+                    <span>Views: {statistics.viewCount}</span>
+                    <span>Likes: {statistics.likeCount}</span>
+                </div>
+
             </div>
 
             <h4 onMouseOver={() => { handleMouseOver() }} onMouseOut={() => { handleMouseOut() }} onClick={() => { setClicked(!clicked); }}>

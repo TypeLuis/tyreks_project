@@ -36,7 +36,20 @@
                 margin-block: 16px;
 
                 p {
-                    margin: 0;
+                    // margin: 0;
+                }
+
+                div {
+                    font-size: large;
+
+                    span {
+
+                        padding-inline: 10px;
+                    }
+
+                    // display: flex;
+                    // justify-content: center;
+                    // gap: 2em;
                 }
             }
 
