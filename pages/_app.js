@@ -11,14 +11,14 @@ function MyApp({ Component, pageProps }) {
     const refHeight = pageRef.current?.offsetHeight
     console.log(refHeight)
 
-    // setHeight()
+    setHeight(refHeight)
   })
   return (
     <>
       <Header />
       <div className={classes.Page_Content}>
 
-        <div className={classes.left}>
+        <div style={{ "height": height }} className={classes.left}>
 
         </div>
 
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </div>
 
-        <div className={classes.right}>
+        <div style={{ "height": height }} className={classes.right}>
           {/* <h1>klk mani</h1> */}
         </div>
 
