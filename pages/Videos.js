@@ -14,7 +14,7 @@ const Videos = (props) => {
             <h1>{channelName}</h1>
             <div className={classes.grid}>
 
-                {props.result && props.result.map((item, i) => <VideoContainer info={item} />)}
+                {props.result && props.result.map((item, i) => <VideoContainer index={i} info={item} />)}
 
             </div>
 

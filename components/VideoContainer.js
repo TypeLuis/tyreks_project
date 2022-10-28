@@ -49,7 +49,7 @@ const VideoContainer = (props) => {
         }
     }
 
-
+    const index = props.index
     const info = props.info
     const videoId = info.id
     const url = `https://www.youtube.com/embed/${videoId}`
@@ -60,7 +60,7 @@ const VideoContainer = (props) => {
     const date = `${dateInfo[1]}/${dateInfo[2]}/${dateInfo[0]}`
 
     return (
-        <div className={`${classes['Iframe_Container']} ${classes[checkclicked]}`}>
+        <div key={index} className={`${classes['Iframe_Container']} ${classes[checkclicked]}`}>
 
             <h3>{title}</h3>
 
