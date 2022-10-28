@@ -2,6 +2,8 @@ import React from 'react'
 import classes from '../styles/Header.module.scss'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import Image from 'next/image'
+import logo from '../Assets/ZKDT_Logo.svg'
 
 const Header = () => {
     const router = useRouter()
@@ -14,8 +16,12 @@ const Header = () => {
     return (
         <>
             <nav className={classes.navbar}>
+                <span className={classes.home}>
+                    {/* <Image src={logo} /> */}
+                    <Image onClick={(e) => { navigator(e) }} src={logo} height={70} width={100} />
+                    {/* Home */}
+                </span>
                 <ul>
-                    <li onClick={(e) => { navigator(e) }}>Home</li>
                     <li onClick={(e) => { navigator(e) }}>Shop</li>
                     <li onClick={(e) => { navigator(e) }}>Donate</li>
                     <li onClick={(e) => { navigator(e) }}>Videos</li>

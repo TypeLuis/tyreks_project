@@ -5,19 +5,51 @@
     position: fixed;
     width: 100%;
     height: 65px;
+    display: flex;
+    // align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    // margin: 0;
     // margin-block: 65px;
     // margin-bottom: 65px;
+
+
+    .home {
+        height: min-content;
+        // padding-right: 40%;
+        // margin-left: 40%;
+        // margin: 0 auto;
+        // gap: 2em;
+        // justify-content: baseline;
+        // align-items: flex-start;
+        // display: flex;
+        // justify-self: baseline;
+        // position: relative;
+        // right: 30%;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+
+    }
 
     ul {
         padding: 0;
         list-style: none;
         display: flex;
-        justify-content: center;
-        align-items: center;
+
+        // centers the ul elements
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
         gap: 1em;
         font-size: larger;
 
+
         li {
+            // margin: 0;
             transition: .5s ease-in;
 
             &:hover {
