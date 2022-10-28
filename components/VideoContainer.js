@@ -9,15 +9,17 @@ const VideoContainer = (props) => {
     const infoRef = useRef(null)
     const [infoHeight, setInfoHeight] = useState(infoRef);
 
-    useEffect(() => {
-        // subtracts margin height from actual height (32 is the margin height)
-        clicked ? setInfoHeight(infoRef.current?.scrollHeight - 32) : setInfoHeight(0)
-    }, [clicked])
-
     // function checks if device is touchscreen
     const isTouchDevice = () => {
         return window.ontouchstart !== undefined;
     }
+
+    // subtracts margin height from entire height to get height of the element (32 is the margin height). this is done to achive hide and show functions
+    useEffect(() => {
+        const scrollHeight = infoRef.current?.scrollHeight
+        clicked ? isTouchDevice() ? setInfoHeight(scrollHeight) : setInfoHeight(scrollHeight - 32) : setInfoHeight(0)
+    }, [clicked])
+
 
     const handleMouseOver = () => {
         if (!isTouchDevice()) {
@@ -35,18 +37,18 @@ const VideoContainer = (props) => {
     }
 
     const handleMouseOut = () => {
-        if (!isTouchDevice()) {
+        // if (!isTouchDevice()) {
 
-            const iframe = infoRef.current?.parentNode
-            iframe.style.border = '1px solid #eaeaea'
-            if (clicked) {
-                setInfoHeight(infoHeight + 50)
-            }
-            else if (!clicked) {
-                console.log(isTouchDevice())
-                setInfoHeight(0)
-            }
-        }
+        //     const iframe = infoRef.current?.parentNode
+        //     iframe.style.border = '1px solid #eaeaea'
+        //     if (clicked) {
+        //         setInfoHeight(infoHeight + 50)
+        //     }
+        //     else if (!clicked) {
+        //         console.log(isTouchDevice())
+        //         setInfoHeight(0)
+        //     }
+        // }
     }
 
     const index = props.index
