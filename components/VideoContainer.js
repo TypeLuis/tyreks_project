@@ -19,16 +19,18 @@ const VideoContainer = (props) => {
         const scrollHeight = infoRef.current?.scrollHeight
         clicked ? isTouchDevice() ? setInfoHeight(scrollHeight) : setInfoHeight(scrollHeight - 32) : setInfoHeight(0)
     }
+
     useEffect(() => {
         handleInfoClick()
     }, [clicked])
 
 
     const handleMouseOver = () => {
+        const iframe = infoRef.current?.parentNode
+        iframe.style.border = '1px solid green'
+
         if (!isTouchDevice()) {
 
-            const iframe = infoRef.current?.parentNode
-            iframe.style.border = '1px solid green'
             if (clicked) {
                 setInfoHeight(infoHeight - 50)
             }
@@ -40,10 +42,11 @@ const VideoContainer = (props) => {
     }
 
     const handleMouseOut = () => {
+        const iframe = infoRef.current?.parentNode
+        iframe.style.border = '1px solid #eaeaea'
+
         if (!isTouchDevice()) {
 
-            const iframe = infoRef.current?.parentNode
-            iframe.style.border = '1px solid #eaeaea'
             if (clicked) {
                 setInfoHeight(infoHeight + 50)
             }
