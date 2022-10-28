@@ -10,7 +10,7 @@ const VideoContainer = (props) => {
     const [infoHeight, setInfoHeight] = useState(infoRef);
 
     useEffect(() => {
-        // subtracts margin height from actual height
+        // subtracts margin height from actual height (32 is the margin height)
         clicked ? setInfoHeight(infoRef.current?.scrollHeight - 32) : setInfoHeight(0)
     }, [clicked])
 
@@ -42,6 +42,7 @@ const VideoContainer = (props) => {
     const url = `https://www.youtube.com/embed/${videoId}`
     const title = info.snippet.title
     const description = info.snippet.description
+    const statistics = info.statistics
 
     return (
         <div className={`${classes['Iframe_Container']} ${classes[checkclicked]}`}>
