@@ -28,7 +28,7 @@ const Header = () => {
                 </ul>
             </nav>
 
-            <div className={classes.spacer}></div>
+            {/* <div className={classes.spacer}></div> */}
 
         </>
     )
