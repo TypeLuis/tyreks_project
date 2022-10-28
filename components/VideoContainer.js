@@ -37,18 +37,18 @@ const VideoContainer = (props) => {
     }
 
     const handleMouseOut = () => {
-        // if (!isTouchDevice()) {
+        if (!isTouchDevice()) {
 
-        //     const iframe = infoRef.current?.parentNode
-        //     iframe.style.border = '1px solid #eaeaea'
-        //     if (clicked) {
-        //         setInfoHeight(infoHeight + 50)
-        //     }
-        //     else if (!clicked) {
-        //         console.log(isTouchDevice())
-        //         setInfoHeight(0)
-        //     }
-        // }
+            const iframe = infoRef.current?.parentNode
+            iframe.style.border = '1px solid #eaeaea'
+            if (clicked) {
+                setInfoHeight(infoHeight + 50)
+            }
+            else if (!clicked) {
+                console.log(isTouchDevice())
+                setInfoHeight(0)
+            }
+        }
     }
 
     const index = props.index
