@@ -60,7 +60,7 @@ const VideoContainer = (props) => {
     const date = `${dateInfo[1]}/${dateInfo[2]}/${dateInfo[0]}`
 
     return (
-        <div key={index} className={`${classes['Iframe_Container']} ${classes[checkclicked]}`}>
+        <div className={`${classes['Iframe_Container']} ${classes[checkclicked]}`}>
 
             <h3>{title}</h3>
 
