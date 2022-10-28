@@ -27,4 +27,18 @@
 
         background-color: burlywood;
     }
+
+    @media screen and (max-width : 600px) {
+        .left {
+            width: 0;
+        }
+
+        .middle {
+            width: 100%;
+        }
+
+        .right {
+            width: 0;
+        }
+    }
 }
