@@ -1,5 +1,6 @@
 .Page_Content {
     display: flex;
+
     // flex-direction: row;
 
     .left {
@@ -10,16 +11,15 @@
     }
 
     .middle {
-        width: max-content;
+        height: max-content;
+        // width: max-content;
         background-color: lawngreen;
     }
 
     .right {
-        height: 100vh;
+        // height: 100vh;
         width: 25%;
 
         background-color: burlywood;
-
-        div {}
     }
 }

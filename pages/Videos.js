@@ -5,9 +5,7 @@ import { useState } from 'react'
 import VideoContainer from '../components/VideoContainer'
 
 const Videos = (props) => {
-
-    console.log(props.result)
-
+    console.log(props.pageInfo)
     const channelName = props.result ? props.result[0].snippet.channelTitle : ''
     return (
         <div className={classes.main}>
@@ -17,7 +15,8 @@ const Videos = (props) => {
                 {props.result && props.result.map((item, i) => {
                     return (
                         <div key={i}>
-                            <VideoContainer index={i} info={item} />
+                            {/* props.pageHeightState comes from _app.js */}
+                            <VideoContainer pageInfo={props.pageInfo} index={i} info={item} />
                         </div>
                     )
                 })}

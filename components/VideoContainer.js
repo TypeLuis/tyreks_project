@@ -29,6 +29,7 @@ const VideoContainer = (props) => {
         const iframe = infoRef.current?.parentNode
         iframe.style.border = '1px solid green'
 
+        console.log(props.pageInfo)
         if (!isTouchDevice()) {
 
             if (clicked) {
@@ -45,13 +46,14 @@ const VideoContainer = (props) => {
         const iframe = infoRef.current?.parentNode
         iframe.style.border = '1px solid #eaeaea'
 
+        console.log(props.pageInfo)
         if (!isTouchDevice()) {
 
             if (clicked) {
                 setInfoHeight(infoHeight + 50)
             }
             else if (!clicked) {
-                console.log(isTouchDevice())
+                // console.log(isTouchDevice())
                 setInfoHeight(0)
             }
         }
