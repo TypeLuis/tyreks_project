@@ -16,7 +16,9 @@ function MyApp({ Component, pageProps }) {
   const checkHeight = () => {
     const rect = pageRef.current?.getClientRects()[0].height
 
-    const refHeight = pageRef.current?.offsetHeight
+    const refHeight = pageRef.current?.childNodes[0].offsetHeight
+
+    // console.log(pageRef)
 
     setHeight(refHeight)
 
@@ -35,9 +37,13 @@ function MyApp({ Component, pageProps }) {
   }
 
   useEffect(() => {
-    checkHeight()
-    setInfo()
-  }, [pageRef.current?.offsetHeight])
+    setTimeout(() => {
+      checkHeight()
+      setInfo()
+
+      // console.log(pageInfo)
+    }, 1000)
+  }, [pageInfo?.changed])
   return (
     <>
       <Header />
@@ -49,7 +55,7 @@ function MyApp({ Component, pageProps }) {
 
         <div ref={pageRef} className={classes.middle}>
 
-          <Component pageInfo={pageInfo} {...pageProps} />
+          <Component setPageInfo={setPageInfo} pageInfo={pageInfo} {...pageProps} />
         </div>
 
         <div ref={rightRef} style={{ "height": height }} className={classes.right}>

@@ -1,12 +1,12 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect } from 'react'
 import classes from '../styles/Videos.module.scss'
-import { useState } from 'react'
 import VideoContainer from '../components/VideoContainer'
 
 const Videos = (props) => {
-    console.log(props.pageInfo)
+
     const channelName = props.result ? props.result[0].snippet.channelTitle : ''
+
     return (
         <div className={classes.main}>
             <h1>{channelName}</h1>
@@ -16,7 +16,7 @@ const Videos = (props) => {
                     return (
                         <div key={i}>
                             {/* props.pageHeightState comes from _app.js */}
-                            <VideoContainer pageInfo={props.pageInfo} index={i} info={item} />
+                            <VideoContainer setPageInfo={props.setPageInfo} pageInfo={props.pageInfo} index={i} info={item} />
                         </div>
                     )
                 })}
