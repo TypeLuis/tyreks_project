@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
       checkHeight()
       setInfo()
 
-      // console.log(pageInfo)
+      console.log(pageInfo)
     }, 1000)
   }, [pageInfo?.changed])
   return (
@@ -59,7 +59,6 @@ function MyApp({ Component, pageProps }) {
         </div>
 
         <div ref={rightRef} style={{ "height": height }} className={classes.right}>
-          {/* <h1>klk mani</h1> */}
         </div>
 
       </div>

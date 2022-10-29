@@ -1,44 +1,44 @@
 .Page_Content {
     display: flex;
     flex-direction: row;
+    // flex-wrap: wrap;
     transition: height 1s ease-in;
-    // flex-direction: row;
+
+    width: 100vw;
+    overflow-y: scroll;
 
     .left {
         // height: 100vh;
         transition: height 1s ease-in;
-        height: max-content;
         width: 25%;
         background-color: aqua;
     }
 
     .middle {
         transition: height 1s ease-in;
-        // height: max-content;
-        // width: min-content;
-        min-width: 50%;
         background-color: lawngreen;
     }
 
     .right {
         transition: height 1s ease-in;
-        // height: 100vh;
         width: 25%;
-
         background-color: burlywood;
     }
 
     @media screen and (max-width : 600px) {
         .left {
-            width: 0;
+            display: none;
+            // width: 0;
         }
 
         .middle {
-            width: 100%;
+            // width: 100vw;
+            // width: max-content;
         }
 
         .right {
-            width: 0;
+            display: none;
+            // width: 0;
         }
     }
 }
