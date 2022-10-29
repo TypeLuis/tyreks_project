@@ -35,15 +35,23 @@ function MyApp({ Component, pageProps }) {
 
     setPageInfo(info)
   }
+  const resize = () => {
+    checkHeight()
+    // setInfo()
+  }
 
   useEffect(() => {
-    setTimeout(() => {
-      checkHeight()
-      setInfo()
+    // setTimeout(() => {
+    //   checkHeight()
+    //   setInfo()
 
-      console.log(pageInfo)
-    }, 1000)
-  }, [pageInfo?.changed])
+    //   console.log(pageInfo)
+    // }, 1000)
+    window.onresize = resize
+  }, [])
+
+
+
   return (
     <>
       <Header />

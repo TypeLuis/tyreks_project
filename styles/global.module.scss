@@ -11,18 +11,20 @@
         // height: 100vh;
         transition: height 1s ease-in;
         width: 25%;
-        background-color: aqua;
+        background-color: #385300;
     }
 
     .middle {
         transition: height 1s ease-in;
-        background-color: lawngreen;
+        width: 50%;
+        // background-color: beige;
+        background: linear-gradient(to top, beige, 50%, lime);
     }
 
     .right {
         transition: height 1s ease-in;
         width: 25%;
-        background-color: burlywood;
+        background-color: #385300;
     }
 
     @media screen and (max-width : 600px) {
@@ -32,6 +34,7 @@
         }
 
         .middle {
+            width: 100%;
             // width: 100vw;
             // width: max-content;
         }
