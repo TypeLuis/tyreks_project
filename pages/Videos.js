@@ -15,8 +15,7 @@ const Videos = (props) => {
                 {props.result && props.result.map((item, i) => {
                     return (
                         <div key={i}>
-                            {/* props.pageHeightState comes from _app.js */}
-                            <VideoContainer setPageInfo={props.setPageInfo} pageInfo={props.pageInfo} index={i} info={item} />
+                            <VideoContainer index={i} info={item} />
                         </div>
                     )
                 })}

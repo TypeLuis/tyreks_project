@@ -18,7 +18,6 @@ const VideoContainer = (props) => {
     const handleInfoClick = () => {
         const scrollHeight = infoRef.current?.scrollHeight
         clicked ? isTouchDevice() ? setInfoHeight(scrollHeight) : setInfoHeight(scrollHeight - 32) : setInfoHeight(0)
-        props.setPageInfo(!props.pageInfo?.changed)
     }
 
     useEffect(() => {
@@ -31,7 +30,6 @@ const VideoContainer = (props) => {
         iframe.style.border = '1px solid green'
 
         if (!isTouchDevice()) {
-            props.setPageInfo(!props.pageInfo?.changed)
 
             if (clicked) {
                 setInfoHeight(infoHeight - 50)
@@ -47,10 +45,7 @@ const VideoContainer = (props) => {
         const iframe = infoRef.current?.parentNode
         iframe.style.border = '1px solid #eaeaea'
 
-        // console.log(props.pageInfo)
         if (!isTouchDevice()) {
-            props.setPageInfo(!props.pageInfo?.changed)
-
             if (clicked) {
                 setInfoHeight(infoHeight + 50)
             }
