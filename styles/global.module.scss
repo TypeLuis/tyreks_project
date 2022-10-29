@@ -10,20 +10,20 @@
     .left {
         // height: 100vh;
         transition: height 1s ease-in;
-        width: 25%;
+        width: 10%;
         background-color: #385300;
     }
 
     .middle {
         transition: height 1s ease-in;
-        width: 50%;
+        width: 80%;
         // background-color: beige;
-        background: linear-gradient(to top, beige, 50%, lime);
+        background: linear-gradient(240deg, beige, 35%, lime);
     }
 
     .right {
         transition: height 1s ease-in;
-        width: 25%;
+        width: 10%;
         background-color: #385300;
     }
 
