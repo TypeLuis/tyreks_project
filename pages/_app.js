@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
       <div className={classes.Page_Content}>
 
         <div style={{ "height": height }} className={classes.left}>
-          <Side_Images />
+          <Side_Images height={height} />
         </div>
 
         <div ref={pageRef} className={classes.middle}>
