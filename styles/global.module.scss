@@ -9,6 +9,14 @@
 
     .left {
         // height: 100vh;
+        // background-image: url('../Assets/Death_Trap_Beige.png');
+        background-image: url("../Assets/Death_Trap_bg.png");
+        background-position: center;
+        background-size: contain;
+        /* Center the image */
+        background-repeat: repeat;
+        overflow: hidden;
+        // height: 1000px;
         transition: height 1s ease-in;
         width: 10%;
         background-color: #385300;

@@ -7,7 +7,7 @@ import Colored from '../Assets/Death_Trap_Colored.png'
 import Dark_Green from '../Assets/Death_Trap_Dark_Green.png'
 import Purple from '../Assets/Death_Trap_Purple.png'
 import Red from '../Assets/Death_Trap_Red.png'
-// import Blue from '../Assets/Death_Trap_Blue.jpeg'
+import bg from '../Assets/Death_Trap_bg.png'
 
 const Side_Images = (props) => {
 
@@ -21,21 +21,18 @@ const Side_Images = (props) => {
         Red,
     ]
 
-    const imgHeight = props.height / imgs.length
 
     useEffect(() => {
+        const imgHeight = props?.height / imgs.length
         setHeight(imgHeight)
-        console.log(props.height, imgHeight, imgs.length)
-        console.log(height)
     }, [props?.height])
     return (
         <div className={classes.main}>
             {imgs.map((item, i) => {
                 return (
-                    <>
-                        <img src={item}></img>
-                        <Image height={5000} src={item} />
-                    </>
+                    <div style={{ "height": `${height}px` }} className={classes.images}>
+                        <Image src={item} />
+                    </div>
                 )
             })}
 

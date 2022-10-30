@@ -16,16 +16,27 @@ function MyApp({ Component, pageProps }) {
     // const rect = pageRef.current?.getClientRects()[0].height
     const refHeight = pageRef.current?.childNodes[0].offsetHeight
     setHeight(refHeight)
-
+    return refHeight
   }
 
-  const resize = () => {
-    checkHeight()
-  }
+
 
   useEffect(() => {
-    window.onresize = resize
+    checkHeight()
+
+
+    // create an Observer instance
+    const resizeObserver = new ResizeObserver(entries =>
+      checkHeight()
+    )
+
+    // start observing a DOM node
+    resizeObserver.observe(pageRef.current?.childNodes[0])
+
+
+    window.onresize = checkHeight()
   }, [])
+
 
 
 
@@ -35,7 +46,7 @@ function MyApp({ Component, pageProps }) {
       <div className={classes.Page_Content}>
 
         <div style={{ "height": height }} className={classes.left}>
-          <Side_Images height={height} />
+          {/* <Side_Images height={height} /> */}
         </div>
 
         <div ref={pageRef} className={classes.middle}>
