@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: row;
     transition: height 1s ease-in;
+    overflow: hidden;
 
-    width: 100vw;
+    // width: 100vw;
     overflow-y: scroll;
 
     .left {
@@ -19,6 +20,7 @@
     }
 
     .middle {
+        overflow: hidden;
         transition: height 1s ease-in;
         min-height: 100vh;
         width: 80%;
