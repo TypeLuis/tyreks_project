@@ -33,7 +33,8 @@ const Side_Images = (props) => {
             {imgs.map((item, i) => {
                 return (
                     <>
-                        <Image height={height} src={item} />
+                        <img src={item}></img>
+                        <Image height={5000} src={item} />
                     </>
                 )
             })}
