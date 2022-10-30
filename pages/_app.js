@@ -2,7 +2,6 @@ import Header from '../components/Header'
 import '../styles/globals.scss'
 import classes from '../styles/global.module.scss'
 import { useRef, useState, useEffect } from 'react'
-import Side_Images from '../components/Side_Images'
 
 function MyApp({ Component, pageProps }) {
   const [height, setHeight] = useState()
@@ -46,7 +45,6 @@ function MyApp({ Component, pageProps }) {
       <div className={classes.Page_Content}>
 
         <div style={{ "height": height }} className={classes.left}>
-          {/* <Side_Images height={height} /> */}
         </div>
 
         <div ref={pageRef} className={classes.middle}>
