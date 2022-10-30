@@ -1,22 +1,18 @@
 .Page_Content {
     display: flex;
     flex-direction: row;
-    // flex-wrap: wrap;
     transition: height 1s ease-in;
 
     width: 100vw;
     overflow-y: scroll;
 
     .left {
-        // height: 100vh;
-        // background-image: url('../Assets/Death_Trap_Beige.png');
         background-image: url("../Assets/Death_Trap_bg.png");
         background-position: center;
         background-size: contain;
-        /* Center the image */
         background-repeat: repeat;
         overflow: hidden;
-        // height: 1000px;
+
         transition: height 1s ease-in;
         width: 10%;
         background-color: #385300;
@@ -25,11 +21,16 @@
     .middle {
         transition: height 1s ease-in;
         width: 80%;
-        // background-color: beige;
         background: linear-gradient(240deg, beige, 35%, lime);
     }
 
     .right {
+        background-image: url("../Assets/Death_Trap_bg.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: repeat;
+        overflow: hidden;
+
         transition: height 1s ease-in;
         width: 10%;
         background-color: #385300;
@@ -38,18 +39,14 @@
     @media screen and (max-width : 600px) {
         .left {
             display: none;
-            // width: 0;
         }
 
         .middle {
             width: 100%;
-            // width: 100vw;
-            // width: max-content;
         }
 
         .right {
             display: none;
-            // width: 0;
         }
     }
 }
