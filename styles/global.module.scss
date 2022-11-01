@@ -23,6 +23,7 @@
         transition: height 1s ease-in;
         min-height: 100vh;
         width: 80%;
+        max-width: 80%;
         background: linear-gradient(240deg, beige, 35%, lime);
     }
 
@@ -44,6 +45,7 @@
         }
 
         .middle {
+            max-width: 100%;
             width: 100%;
         }
 
