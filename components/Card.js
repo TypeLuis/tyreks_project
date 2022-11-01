@@ -91,13 +91,10 @@ const Card = (props) => {
                             setImageNum(imageNum = 0)
                             clearInterval(intervalId)
 
-
                             break
                     }
 
                     entry.target.classList.remove(classes[deviceTypeFunc()])
-
-
 
                     if (entry.boundingClientRect.top > 0) {
                         // Element is above the viewport
