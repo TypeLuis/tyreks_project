@@ -87,7 +87,7 @@ const Card = (props) => {
                         case 'tablet':
                         case 'mobile':
 
-                            console.log('bye', intervalId)
+                            // console.log('bye', intervalId)
                             setImageNum(imageNum = 0)
                             clearInterval(intervalId)
 
@@ -96,10 +96,10 @@ const Card = (props) => {
 
                     entry.target.classList.remove(classes[deviceTypeFunc()])
 
+                    // Element is above the viewport
                     if (entry.boundingClientRect.top > 0) {
-                        // Element is above the viewport
                         if (count < 5) {
-                            console.log(count)
+                            // console.log(count)
                             entry.target.classList.remove(classes.appear)
                             setCount(count++)
                         }
@@ -110,7 +110,6 @@ const Card = (props) => {
 
                 }
                 else {
-
 
                     if (slider) return
 
@@ -149,11 +148,8 @@ const Card = (props) => {
 
         if (props.slider) return
 
-        console.log(deviceType)
-
         switch (deviceType) {
             case 'desktop':
-
 
                 const newInterval = setInterval(() => {
                     const newNum = imageNum + 1
@@ -163,7 +159,7 @@ const Card = (props) => {
 
                 }, 2000);
 
-                setIntervalId(newInterval)
+                setIntervalId(intervalId = newInterval)
                 break
 
         }
@@ -173,7 +169,6 @@ const Card = (props) => {
 
 
     const hoverOut = (e) => {
-
 
         if (props.slider) return
 
@@ -195,6 +190,7 @@ const Card = (props) => {
 
     return (
         <div ref={cardRef} onClick={() => { handleClick() }} onMouseOver={hoverFunction} onMouseOut={hoverOut} className={`${classes.card} ${!props.slider ? classes.single : classes.slider}`}>
+
             <div className={classes.product__image}>
                 {/* <img src='https://images.unsplash.com/photo-1648326311535-21895c185fbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80' /> */}
 
@@ -215,9 +211,9 @@ const Card = (props) => {
                 }
             </div>
 
-            {/* <div className={classes.product__wave}>
+            <div className={classes.product__wave}>
 
-            </div> */}
+            </div>
 
             <div className={classes.product__info}>
 
