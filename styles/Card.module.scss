@@ -1,0 +1,289 @@
+@mixin keyframes-animation($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap');
+
+.card {
+  // position: absolute;
+  // padding: 2rem;
+  // height: Min(40vw, 400px);
+
+  box-shadow: 2px 2px 5px black;
+  cursor: pointer;
+  opacity: 0;
+
+
+  transform: scale(0.96);
+  transition: opacity 550ms linear, transform 400ms linear,
+    left 500ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  // grid-template-rows: min-content;
+
+  text-align: center;
+  position: relative;
+  // align-items: baseline;
+  align-items: center;
+  justify-content: center;
+  // margin: 2em auto;
+
+
+
+}
+
+.card.single {
+
+  gap: 0.5rem;
+  padding: 0.5rem;
+
+  .product__info {
+    display: flex;
+    height: 100px;
+    flex-direction: column;
+    align-items: center;
+    // align-self: flex-start;
+    width: max-content;
+    z-index: 10;
+    gap: 1em;
+
+    .info__flex {
+      display: flex;
+      gap: 2em;
+    }
+
+    .info__flex2 {
+      display: flex;
+      gap: 2em;
+    }
+
+    .product__title {
+      // width: min-content;
+      // display: flex;
+      // align-items: flex-start;
+      position: relative;
+      top: 15%;
+      font-weight: 300;
+      color: rgb(80, 80, 80);
+      font-size: x-large;
+      font-family: 'Merriweather', serif;
+    }
+
+    .product__price {
+      font-size: larger;
+      font-weight: 500;
+    }
+
+    .product__review {
+      font-size: large;
+
+      & span {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.product__image {
+  // box-shadow: 0.25px 0.25px 1px 0.25px black;
+  position: relative;
+  // margin:0 auto;
+
+  img {
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+
+}
+
+
+
+.card.appear {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card.slider_event {
+  left: 50%;
+}
+
+.card.slider_event.appear {
+  left: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// when the card component is in a slider
+.card.slider {}
+
+
+
+// when the card isn't a slider
+.card.single {
+  width: max-content;
+  margin: 2em auto;
+
+  &:hover .images::before {
+
+    animation: card calc(var(--num) * 2s) linear infinite;
+  }
+
+
+  .images {
+    position: relative;
+    // margin: 0 auto;
+
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: red;
+      height: 2px;
+      width: 0;
+      z-index: 1;
+
+      &:hover {}
+
+    }
+
+    img {
+      position: absolute;
+      right: 0;
+      opacity: 0;
+      transition: opacity .5s linear;
+      filter: drop-shadow(2px 2px 2px black);
+      // margin-top: calc(var(--imageNum) * 10px);
+      // aspect-ratio: 1 / 1.25;
+      // object-position: center;
+      // height:;
+
+      &.newImage {
+        opacity: 1;
+      }
+    }
+
+    // position: absolute;
+
+  }
+}
+
+.card.tablet.single,
+.card.mobile.single {
+
+  // margin-top: 30em;
+  .images {
+    min-width: 350px;
+    min-height: 350px;
+  }
+
+  .images::before {
+    animation: card calc(var(--num) * 2s) linear infinite;
+  }
+
+
+}
+
+
+.card.desktop {
+  // border: 1px solid black;
+  // border-radius: 0 0 20% 20%;
+  overflow: hidden;
+
+  &:hover .product__wave {
+    top: 90%;
+  }
+
+  &:hover .product__wave::before {
+    // animation: fill .5s linear infinite;
+  }
+
+  .images {
+    z-index: 1;
+    background-color: white;
+  }
+
+  .product__wave {
+    position: absolute;
+    top: calc(100% + 22px);
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00aeff;
+    transition: 2s;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -22px;
+      left: 0;
+      width: 100%;
+      height: 22px;
+      background: url('../Assets/wave.png');
+      // background-repeat: no-repeat;
+      background-size: contain;
+      z-index: -1000;
+      animation: fill .5s linear infinite;
+    }
+
+
+  }
+
+}
+
+.card.desktop.single {
+
+  // background-color: red;
+  .images {
+    min-width: 500px;
+    min-height: 500px;
+
+    &::before {
+      background-color: blue;
+    }
+  }
+}
+
+
+@keyframes fill {
+
+  0% {
+    background-position-x: 0;
+    background-position-y: -22px;
+  }
+
+  100% {
+    background-position-x: 118px;
+    background-position-y: -22px;
+  }
+}
+
+@keyframes card {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
