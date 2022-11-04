@@ -151,14 +151,23 @@
 
     }
 
-    // opacity: 0;
+    // Utilize in React
+    // img {
+    //   position: absolute;
+    //   right: 0;
+    //   opacity: 0;
+    //   transition: opacity .5s linear;
+    //   filter: drop-shadow(2px 2px 2px black);
 
-    img {
-      position: absolute;
-      right: 0;
+    //   &.newImage {
+    //     opacity: 1;
+    //   }
+    // }
+
+    // Utilize in Next.js
+    .imageDiv {
       opacity: 0;
       transition: opacity .5s linear;
-      filter: drop-shadow(2px 2px 2px black);
 
       &.newImage {
         opacity: 1;

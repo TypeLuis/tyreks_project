@@ -195,18 +195,25 @@ const Card = (props) => {
 
                 {props.slider ?
 
-                    <img src={images[0]}></img>
+                    // React.js
+                    // <img src={images[0]}></img>
+
+                    // Next.js
+                    <Image layout='fill' src={images[0]} />
 
                     :
 
                     <div style={{ '--num': images.length + 1 }} className={`${classes.images}`}>
                         {images.map((item, i) => {
                             return (
-                                <img className={i === imageNum && classes.newImage} src={item} />
 
-                                // <div className={`${i === imageNum && classes.newImage} Img_Div`}>
-                                //     <Image layout='fill' src={item} />
-                                // </div>
+                                // utilize in React.js
+                                // <img className={i === imageNum && classes.newImage} src={item} />
+
+                                // Utilize in Next.js
+                                <div className={`${classes.imageDiv} ${i === imageNum && classes.newImage}`}>
+                                    <Image layout='fill' src={item} />
+                                </div>
                             )
                         })}
                     </div>
