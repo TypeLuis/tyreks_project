@@ -11,9 +11,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap');
 
 .card {
-  // position: absolute;
-  // padding: 2rem;
-  // height: Min(40vw, 400px);
 
   box-shadow: 2px 2px 5px black;
   cursor: pointer;
@@ -64,9 +61,6 @@
     }
 
     .product__title {
-      // width: min-content;
-      // display: flex;
-      // align-items: flex-start;
       position: relative;
       top: 15%;
       font-weight: 300;
@@ -173,17 +167,11 @@
       opacity: 0;
       transition: opacity .5s linear;
       filter: drop-shadow(2px 2px 2px black);
-      // margin-top: calc(var(--imageNum) * 10px);
-      // aspect-ratio: 1 / 1.25;
-      // object-position: center;
-      // height:;
 
       &.newImage {
         opacity: 1;
       }
     }
-
-    // position: absolute;
 
   }
 }
@@ -191,7 +179,6 @@
 .card.tablet.single,
 .card.mobile.single {
 
-  // margin-top: 30em;
   .images {
     min-width: 350px;
     min-height: 350px;
@@ -285,5 +272,12 @@
 
   100% {
     width: 100%;
+  }
+}
+
+@media screen and (max-width : 600px) {
+  .card {
+    // background-color: #00aeff;
+    // width: min-content;
   }
 }
