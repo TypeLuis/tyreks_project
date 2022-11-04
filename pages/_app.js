@@ -27,7 +27,6 @@ function MyApp({ Component, pageProps }) {
 
     // create an Observer instance
     const resizeObserver = new ResizeObserver(entries =>
-      // console.log('hi'),
       checkHeight()
     )
 
@@ -36,7 +35,7 @@ function MyApp({ Component, pageProps }) {
 
 
     window.onresize = checkHeight()
-  }, [router.pathname])
+  }, [])
 
 
 
