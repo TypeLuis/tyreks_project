@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
       setHeight(pageInfo)
       return refHeight
     }
-    console.log(router.pathname)
+    // console.log(router.pathname)
     checkHeight()
 
 
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
 
 
     window.onresize = checkHeight()
-  }, [])
+  }, [router.pathname])
 
 
 

@@ -8,7 +8,7 @@ const Shop = () => {
     }
     return (
         <div style={style}>
-            <Card />
+            {/* <Card /> */}
         </div>
     )
 }
