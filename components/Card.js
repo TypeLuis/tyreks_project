@@ -210,7 +210,7 @@ const Card = (props) => {
                                 // <img className={i === imageNum && classes.newImage} src={item} />
 
                                 // Utilize in Next.js
-                                <div className={`${classes.imageDiv} ${i === imageNum && classes.newImage}`}>
+                                <div key={i} className={`${classes.imageDiv} ${i === imageNum && classes.newImage}`}>
                                     <Image layout='fill' src={item} />
                                 </div>
                             )
