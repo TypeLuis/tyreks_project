@@ -11,18 +11,16 @@ function MyApp({ Component, pageProps }) {
   const [pageInfo, setPageInfo] = useState()
 
 
-
-  const checkHeight = () => {
-    // const rect = pageRef.current?.getClientRects()[0].height
-    const refHeight = pageRef.current?.childNodes[0].offsetHeight
-    console.log(refHeight)
-    setHeight(pageInfo)
-    return refHeight
-  }
-
   const router = useRouter()
 
   useEffect(() => {
+    const checkHeight = () => {
+      // const rect = pageRef.current?.getClientRects()[0].height
+      const refHeight = pageRef.current?.childNodes[0].offsetHeight
+      console.log(refHeight)
+      setHeight(pageInfo)
+      return refHeight
+    }
     console.log(router.pathname)
     checkHeight()
 
