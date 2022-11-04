@@ -116,16 +116,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 // when the card component is in a slider
 .card.slider {}
 
@@ -161,6 +151,8 @@
 
     }
 
+    // opacity: 0;
+
     img {
       position: absolute;
       right: 0;
@@ -172,6 +164,7 @@
         opacity: 1;
       }
     }
+
 
   }
 }

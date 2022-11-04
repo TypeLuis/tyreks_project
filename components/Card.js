@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from 'react'
 import ReactStars from "react-rating-stars-component";
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Images from './images';
 
 const Card = (props) => {
 
@@ -192,7 +193,7 @@ const Card = (props) => {
             <div className={classes.product__image}>
                 {/* <img src='https://images.unsplash.com/photo-1648326311535-21895c185fbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80' /> */}
 
-                {/* {props.slider ?
+                {props.slider ?
 
                     <img src={images[0]}></img>
 
@@ -202,11 +203,15 @@ const Card = (props) => {
                         {images.map((item, i) => {
                             return (
                                 <img className={i === imageNum && classes.newImage} src={item} />
+
+                                // <div className={`${i === imageNum && classes.newImage} Img_Div`}>
+                                //     <Image layout='fill' src={item} />
+                                // </div>
                             )
                         })}
                     </div>
 
-                } */}
+                }
             </div>
 
             {/* <div className={classes.product__wave}>
