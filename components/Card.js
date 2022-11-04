@@ -194,14 +194,14 @@ const Card = (props) => {
 
                 {props.slider ?
 
-                    <Image src={images[0]}></Image>
+                    <img src={images[0]}></img>
 
                     :
 
                     <div style={{ '--num': images.length + 1 }} className={`${classes.images}`}>
                         {images.map((item, i) => {
                             return (
-                                <Image className={i === imageNum && classes.newImage} src={item} />
+                                <img className={i === imageNum && classes.newImage} src={item} />
                             )
                         })}
                     </div>
