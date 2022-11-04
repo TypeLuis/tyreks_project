@@ -163,8 +163,6 @@ const Card = (props) => {
                 break
 
         }
-
-
     }
 
 
@@ -182,7 +180,6 @@ const Card = (props) => {
 
                 setImageNum(0)
                 clearInterval(intervalId)
-
                 break
 
         }
@@ -211,9 +208,9 @@ const Card = (props) => {
                 }
             </div>
 
-            <div className={classes.product__wave}>
+            {/* <div className={classes.product__wave}>
 
-            </div>
+            </div> */}
 
             <div className={classes.product__info}>
 
