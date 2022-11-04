@@ -2,6 +2,7 @@ import classes from '../styles/Card.module.scss'
 import { useEffect, useState, useRef } from 'react'
 import ReactStars from "react-rating-stars-component";
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const Card = (props) => {
 
@@ -193,14 +194,14 @@ const Card = (props) => {
 
                 {props.slider ?
 
-                    <img src={images[0]}></img>
+                    <Image src={images[0]}></Image>
 
                     :
 
                     <div style={{ '--num': images.length + 1 }} className={`${classes.images}`}>
                         {images.map((item, i) => {
                             return (
-                                <img className={i === imageNum && classes.newImage} src={item} />
+                                <Image className={i === imageNum && classes.newImage} src={item} />
                             )
                         })}
                     </div>
