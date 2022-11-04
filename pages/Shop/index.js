@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from '../../components/Card'
+// import Card from '../../components/Card'
 import classes from '../../styles/Shop.module.scss'
 
 const Shop = () => {
