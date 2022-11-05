@@ -7,6 +7,7 @@
     .Donation_Box {
         background: green url(https://donorbox.org/images/red_logo.png) no-repeat 37px;
         color: #fff;
+        margin-block: 1em;
         text-decoration: none;
         font-family: Verdana, sans-serif;
         display: inline-block;
@@ -27,5 +28,18 @@
             background: green url(https://donorbox.org/images/red_logo.png) no-repeat 37px;
             // box-shadow: none;
         }
+
+        &.Donate_Div {
+            cursor: pointer;
+        }
+    }
+
+
+    .Iframe_Div {
+        // display: flex;
+        width: 100%;
+        // flex-direction: ;
+        align-items: center;
+        justify-content: center;
     }
 }
