@@ -12,16 +12,7 @@ const Donate = () => {
     const frameStyle = {
 
         // "height": "max-content",
-        // "padding": '50px',
-        // "max-height": "700px",
-        // "min-height": "500px",
-
-
-        // "max-width": "500px",
-        // "width": "max-content",
-
-        // "margin": '50px',
-
+        "padding": '125px 50px 100px 25px',
 
         "max-width": "500px",
         "min-width": "250px",
