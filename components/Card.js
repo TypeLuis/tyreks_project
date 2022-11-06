@@ -10,6 +10,7 @@ import Image from 'next/image';
     props.name => product name
     props.images => Array of images
     props.price => price of product
+    props.category => determines category of product
     props.slider => determines wether card is a slider
 
     props.review => determine if product has reviews

@@ -1,15 +1,21 @@
-import Beige from '../Assets/Death_Trap_Beige.png'
-import colored from '../Assets/Death_Trap_colored.png'
-import Dark_Green from '../Assets/Death_Trap_Dark_Green.png'
-import Purple from '../Assets/Death_Trap_Purple.png'
-import Red from '../Assets/Death_Trap_Red.png'
+import First from '../Assets/Fleece/Fleece1.jpeg'
+import Second from '../Assets/Fleece/Fleece2.jpeg'
+import Third from '../Assets/Fleece/Fleece3.jpeg'
+import Fourth from '../Assets/Fleece/Fleece4.jpeg'
+import Fifth from '../Assets/Fleece/Fleece5.jpeg'
+import Sixth from '../Assets/Fleece/Fleece6.jpeg'
+import Seventh from '../Assets/Fleece/Fleece7.jpeg'
+import Eighth from '../Assets/Fleece/Fleece8.jpeg'
 
 const Images = [
-    colored,
-    Beige,
-    Dark_Green,
-    Purple,
-    Red
+    First,
+    Second,
+    Third,
+    Fourth,
+    Fifth,
+    Sixth,
+    Seventh,
+    Eighth
 ]
 
 export default Images
