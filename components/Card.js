@@ -4,6 +4,21 @@ import ReactStars from "react-rating-stars-component";
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
+/*
+    Multiple props for component
+
+    props.name => product name
+    props.images => Array of images
+    props.price => price of product
+    props.slider => determines wether card is a slider
+
+    props.review => determine if product has reviews
+    props.rating => gives rating value of product
+    props.reviewCount => Gives how many people reviewed product
+
+
+*/
+
 const Card = (props) => {
 
     const [imageNum, setImageNum] = useState(0)
@@ -190,7 +205,6 @@ const Card = (props) => {
         <div ref={cardRef} onClick={() => { handleClick() }} onMouseOver={hoverFunction} onMouseOut={hoverOut} className={`${classes.card} ${!props.slider ? classes.single : classes.slider}`}>
 
             <div className={classes.product__image}>
-                {/* <img src='https://images.unsplash.com/photo-1648326311535-21895c185fbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80' /> */}
 
                 {props.slider ?
 
@@ -231,18 +245,29 @@ const Card = (props) => {
                     <div className={classes.product__title}>
                         {props.name ? props.name : 'Product title display'}
                     </div>
-                    <div className={classes.product_rating}>
-                        <ReactStars {...thirdExample} />
-                    </div>
+
+                    {props.review &&
+
+
+                        <div className={classes.product_rating}>
+                            <ReactStars {...thirdExample} />
+                        </div>
+                    }
+
                 </div>
                 <div className={classes.info__flex2}>
 
                     <div className={classes.product__price}>
                         ${props.price ? props.price : 74}
                     </div>
-                    <div className={classes.product__review}>
-                        Based on <span>{props.reviewCount ? props.reviewCount : 10}</span> reviews.
-                    </div>
+
+                    {props.review &&
+
+                        <div className={classes.product__review}>
+                            Based on <span>{props.reviewCount ? props.reviewCount : 10}</span> reviews.
+                        </div>
+                    }
+
                 </div>
             </div>
         </div>
