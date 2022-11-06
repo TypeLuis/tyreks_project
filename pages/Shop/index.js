@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '../../components/Card'
-import Images from '../../components/images'
+import Images from '../../components/Images'
 import classes from '../../styles/Shop.module.scss'
 
 
