@@ -71,7 +71,7 @@ const VideoContainer = (props) => {
 
             <h3>{title}</h3>
 
-            <iframe src={url} allowFullScreen title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
+            <iframe src={url} allowFullScreen title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
 
             <div ref={infoRef} style={{ "height": infoHeight }} className={`${classes['more-info']}`}>
                 <p>
