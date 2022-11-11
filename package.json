@@ -16,9 +16,5 @@
     "react-dom": "18.2.0",
     "react-rating-stars-component": "^2.2.0",
     "sass": "^1.55.0"
-  },
-  "devDependencies": {
-    "eslint": "8.26.0",
-    "eslint-config-next": "12.3.1"
   }
 }
