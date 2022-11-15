@@ -15,7 +15,10 @@ const nextConfig = {
     //   },
     // ],
     domains: ['images.unsplash.com']
-  }
+  },
+  experimental: {
+    allowMiddlewareResponseBody: true,
+  },
 }
 
 module.exports = nextConfig
