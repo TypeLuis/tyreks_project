@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-
 export const config = {
     matcher: ['/api/hello']
 }
@@ -16,13 +15,11 @@ export function middleware(req) {
         const url = req.nextUrl.clone()
         url.pathname = '/api/error'
         return NextResponse.redirect(url.href)
-        // return NextResponse.next().json({ message: 'A token is required for authentication' })
-        // NextResponse.redirect(`${req.nextUrl.origin}/api/Error`)
-        // return NextResponse.json({ message: 'A token is required for authentication' }, { status: 401 })
+
+        // How next.js used to handle errors
         // return new Response('A token is required for authentication', {
         //     status: 401
         // })
-        // return res.status(403).send("A token is required for authentication");
     }
     try {
         console.log('hi', token)
