@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// const jwt = require("jsonwebtoken");
+
+export const config = {
+    matcher: ['/api/hello']
+}
 
 export function middleware(req) {
 
@@ -12,7 +15,7 @@ export function middleware(req) {
     if (!token) {
         const url = req.nextUrl.clone()
         url.pathname = '/api/error'
-        return NextResponse.redirect('http://localhost:3000/api/error')
+        return NextResponse.redirect(url.href)
         // return NextResponse.next().json({ message: 'A token is required for authentication' })
         // NextResponse.redirect(`${req.nextUrl.origin}/api/Error`)
         // return NextResponse.json({ message: 'A token is required for authentication' }, { status: 401 })
