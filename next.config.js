@@ -3,7 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    'YTAPI': process.env.YTAPI
+    'YTAPI': process.env.YTAPI,
+    'TOKEN_KEY': process.env.TOKEN_KEY
   },
   images: {
     // remotePatterns: [
