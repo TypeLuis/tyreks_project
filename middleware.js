@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+
+// Because middleware in Next.js doesn't support jsonwebtoken, Using jose is the best option
+// https://github.com/vercel/next.js/discussions/38227
 import { jwtVerify } from 'jose'
 
 // Error: The edge runtime does not support Node.js 'buffer' module.
@@ -27,20 +30,13 @@ export async function middleware(req) {
     }
     try {
         const secret = process.env.TOKEN_KEY;
-        console.log('hi', token)
 
-        const test = await jwtVerify(token, new TextEncoder().encode('secret'))
-        // console.log(test)
-        // req.user = token
-        // const decoded = jwt.verify(token, config.TOKEN_KEY);
-        // req.user = decoded;
+        const decoded = await jwtVerify(token, new TextEncoder().encode(secret))
+        req.decoded = decoded;
     } catch (err) {
         const url = req.nextUrl.clone()
         url.pathname = '/api/error'
         return NextResponse.redirect(url.href)
-
-        // NextResponse.json({ message: 'Invalid Token' }, { status: 403 })
-        // return res.status(401).send("Invalid Token");
     }
     return NextResponse.next();
 }
