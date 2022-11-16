@@ -32,13 +32,14 @@ const Shop = (props) => {
                     'x-access-token': token
                 }
             })
-
             console.log(response)
         } catch (error) {
             // console.log(error)
             console.log(error.response.data.Message, error.response.status)
         }
     }
+
+    console.log(props.test)
 
     return (
         <div style={style}>
@@ -64,13 +65,56 @@ export const getStaticProps = async () => {
         }
     })
 
-    // console.log('space')
-    // console.log(response.data.products.data)
     const products = response.data.products.data
+
+    const Retrieve_All_Data = async () => {
+
+        const promises = []
+
+        products.map(async (item, i) => {
+            if (item.default_price) {
+
+                const promise = new Promise(async (resolve, reject) => {
+
+                    try {
+                        const response = await axios.get(`http://localhost:3000/api/Stripe/price?price_data=${item.default_price}`, {
+                            headers: {
+                                'x-access-token': token
+                            }
+                        })
+                        const price = response.data.price.unit_amount / 100
+                        const checkImages = item.metadata.images
+                        const obj = {
+                            ...item,
+                            price: price,
+                            all_images: checkImages ? checkImages.split(',') : item.images
+                        }
+
+                        resolve(obj)
+
+                    } catch (error) {
+                        reject(error)
+                    }
+
+                })
+
+                promises.push(promise);
+
+            }
+
+        })
+
+        const result = await Promise.all(promises).then(r => r).catch(error => { throw error })
+
+        return result
+    }
+
+    console.log(result)
 
     return {
         'props': {
-            'result': products
+            'result': products,
+            'test': result
         },
     }
 
