@@ -41,7 +41,7 @@ const Shop = (props) => {
 
     return (
         <div style={style}>
-            {/* {props.result.map((item, i) => {
+            {props.result.map((item, i) => {
 
                 return (
 
@@ -50,7 +50,7 @@ const Shop = (props) => {
                         <Card images={item.all_images} name={item.name} price={item.price} />
                     </div>
                 )
-            })} */}
+            })}
 
             <h1 onClick={() => { handleClick() }}>test</h1>
         </div>
@@ -59,71 +59,71 @@ const Shop = (props) => {
 
 export default Shop
 
-// export const getStaticProps = async () => {
-//     const secret = process.env.TOKEN_KEY
+export const getStaticProps = async () => {
+    const secret = process.env.TOKEN_KEY
 
-//     const token = await new SignJWT({ message: 'message' })
-//         .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
-//         .sign(new TextEncoder().encode(secret))
+    const token = await new SignJWT({ message: 'message' })
+        .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+        .sign(new TextEncoder().encode(secret))
 
-//     console.log(process.env.BACKEND_URL)
-//     const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/products`, {
-//         headers: {
-//             'x-access-token': token
-//         }
-//     })
+    console.log(process.env.BACKEND_URL)
+    const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/products`, {
+        headers: {
+            'x-access-token': token
+        }
+    })
 
-//     const products = response.data.products.data
+    const products = response.data.products.data
 
-//     const Retrieve_All_Data = async () => {
+    const Retrieve_All_Data = async () => {
 
-//         const promises = []
+        const promises = []
 
-//         products.map(async (item, i) => {
-//             if (item.default_price) {
+        products.map(async (item, i) => {
+            if (item.default_price) {
 
-//                 const promise = new Promise(async (resolve, reject) => {
+                const promise = new Promise(async (resolve, reject) => {
 
-//                     try {
-//                         const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${item.default_price}`, {
-//                             headers: {
-//                                 'x-access-token': token
-//                             }
-//                         })
-//                         const price = response.data.price.unit_amount / 100
-//                         const checkImages = item.metadata.images
-//                         const obj = {
-//                             ...item,
-//                             price: price,
-//                             all_images: checkImages ? checkImages.split(',') : item.images
-//                         }
+                    try {
+                        const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${item.default_price}`, {
+                            headers: {
+                                'x-access-token': token
+                            }
+                        })
+                        const price = response.data.price.unit_amount / 100
+                        const checkImages = item.metadata.images
+                        const obj = {
+                            ...item,
+                            price: price,
+                            all_images: checkImages ? checkImages.split(',') : item.images
+                        }
 
-//                         resolve(obj)
+                        resolve(obj)
 
-//                     } catch (error) {
-//                         reject(error)
-//                     }
+                    } catch (error) {
+                        reject(error)
+                    }
 
-//                 })
+                })
 
-//                 promises.push(promise);
+                promises.push(promise);
 
-//             }
+            }
 
-//         })
+        })
 
-//         const result = await Promise.all(promises).then(r => r).catch(error => { throw error })
+        const result = await Promise.all(promises).then(r => r).catch(error => { throw error })
 
-//         return result
-//     }
+        return result
+    }
 
-//     // console.log( await Retrieve_All_Data())
+    // console.log( await Retrieve_All_Data())
 
-//     return {
-//         'props': {
-//             'products': products,
-//             'result': await Retrieve_All_Data(),
-//         },
-//     }
+    return {
+        'props': {
+            'products': products,
+            'result': await Retrieve_All_Data(),
+        },
+    }
 
-// }
+}
