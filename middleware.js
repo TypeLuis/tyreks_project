@@ -15,7 +15,7 @@ export const config = {
 
 export async function middleware(req, ev) {
 
-    const token = req.headers.get("x-access-token");
+    const token = req.headers.get("x-access-toke");
 
     console.log(req.nextUrl)
 
@@ -24,12 +24,13 @@ export async function middleware(req, ev) {
         const status = sts
         const url = req.nextUrl.clone()
         const link = `${url.origin}/api/error?message=${message}&status=${status}`
-        return NextResponse.redirect(link)
+        return link
     }
 
 
     if (!token) {
-        errorFunction('A token is required for authentication', 401)
+        const error = errorFunction('A token is required for authentication', 401)
+        return NextResponse.redirect(error)
     }
     try {
         const secret = process.env.TOKEN_KEY;
@@ -43,7 +44,8 @@ export async function middleware(req, ev) {
         req.payload = decoded.payload;
     } catch (err) {
         console.log(err)
-        errorFunction('Invalid Token', 403)
+        const error = errorFunction('Invalid Token', 403)
+        return NextResponse.redirect(error)
 
         // NextResponse.json({ message: 'Invalid Token' }, { status: 403 })
     }
