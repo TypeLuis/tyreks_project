@@ -23,7 +23,7 @@ const Shop = (props) => {
                 .sign(new TextEncoder().encode(secret))
 
 
-            const response = await axios.get(`${process.env.HOST_BACKEND}hello`, {
+            const response = await axios.get(`${process.env.BACKEND_URL}hello`, {
                 headers: {
                     'x-access-token': token
                 }
@@ -34,8 +34,6 @@ const Shop = (props) => {
             console.log(error.response.data.Message, error.response.status)
         }
     }
-
-    console.log(props.hi)
 
     return (
         <div style={style}>
@@ -64,7 +62,7 @@ export const getStaticProps = async () => {
         .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
         .sign(new TextEncoder().encode(secret))
 
-    const response = await axios.get(`${process.env.HOST_BACKEND}/Stripe/products`, {
+    const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/products`, {
         headers: {
             'x-access-token': token
         }
@@ -82,7 +80,7 @@ export const getStaticProps = async () => {
                 const promise = new Promise(async (resolve, reject) => {
 
                     try {
-                        const response = await axios.get(`${process.env.HOST_BACKEND}/Stripe/price?price_data=${item.default_price}`, {
+                        const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${item.default_price}`, {
                             headers: {
                                 'x-access-token': token
                             }
@@ -120,7 +118,6 @@ export const getStaticProps = async () => {
         'props': {
             'products': products,
             'result': await Retrieve_All_Data(),
-            hi: window.loaction
         },
     }
 
