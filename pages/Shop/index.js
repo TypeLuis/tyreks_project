@@ -9,7 +9,7 @@ import axios from 'axios'
 // import { headers } from '../../next.config'
 
 
-const Shop = () => {
+const Shop = (props) => {
     const style = {
         // 'background-color': 'blue'
     }
@@ -50,3 +50,28 @@ const Shop = () => {
 }
 
 export default Shop
+
+export const getStaticProps = async () => {
+    const secret = process.env.TOKEN_KEY
+
+    const token = await new SignJWT({ message: 'message' })
+        .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+        .sign(new TextEncoder().encode(secret))
+
+    const response = await axios.get('http://localhost:3000/api/Stripe/products', {
+        headers: {
+            'x-access-token': token
+        }
+    })
+
+    // console.log('space')
+    // console.log(response.data.products.data)
+    const products = response.data.products.data
+
+    return {
+        'props': {
+            'result': products
+        },
+    }
+
+}
