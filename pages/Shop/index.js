@@ -35,7 +35,8 @@ const Shop = () => {
 
             console.log(response)
         } catch (error) {
-            console.log(error.response.data.Message)
+            // console.log(error)
+            console.log(error.response.data.Message, error.response.status)
         }
     }
 

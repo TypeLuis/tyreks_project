@@ -1,3 +1,6 @@
 export default function handler(req, res) {
-    res.status(401).json({ Message: 'A token is required for authentication' })
+    const { message, status } = req.query
+
+    console.log(message)
+    res.status(status).json({ Message: message ? message : 'A token is required for authentication' })
 }
