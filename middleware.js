@@ -10,7 +10,7 @@ import { jwtVerify } from 'jose'
 
 
 export const config = {
-    matcher: ['/api/hello'] // defines which api routes uses the middleware
+    matcher: ['/api/hello', '/api/Stripe/products', '/api/Stripe/price'] // defines which api routes uses the middleware
 }
 
 export async function middleware(req, ev) {
