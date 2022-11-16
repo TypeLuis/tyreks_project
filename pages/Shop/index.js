@@ -22,10 +22,8 @@ const Shop = (props) => {
                 .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
                 .sign(new TextEncoder().encode(secret))
 
-            console.log(token)
-            // const test = new TextEncoder().encode(secret)
-            // console.log(new TextEncoder().decode(test))
-            const response = await axios.get('http://localhost:3000/api/hello', {
+
+            const response = await axios.get(`${process.env.HOST_BACKEND}hello`, {
                 headers: {
                     'x-access-token': token
                 }
@@ -37,7 +35,7 @@ const Shop = (props) => {
         }
     }
 
-    console.log(props.result)
+    console.log(props.hi)
 
     return (
         <div style={style}>
@@ -66,7 +64,7 @@ export const getStaticProps = async () => {
         .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
         .sign(new TextEncoder().encode(secret))
 
-    const response = await axios.get('http://localhost:3000/api/Stripe/products', {
+    const response = await axios.get(`${process.env.HOST_BACKEND}/Stripe/products`, {
         headers: {
             'x-access-token': token
         }
@@ -84,7 +82,7 @@ export const getStaticProps = async () => {
                 const promise = new Promise(async (resolve, reject) => {
 
                     try {
-                        const response = await axios.get(`http://localhost:3000/api/Stripe/price?price_data=${item.default_price}`, {
+                        const response = await axios.get(`${process.env.HOST_BACKEND}/Stripe/price?price_data=${item.default_price}`, {
                             headers: {
                                 'x-access-token': token
                             }
@@ -121,7 +119,8 @@ export const getStaticProps = async () => {
     return {
         'props': {
             'products': products,
-            'result': await Retrieve_All_Data()
+            'result': await Retrieve_All_Data(),
+            hi: window.loaction
         },
     }
 

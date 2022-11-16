@@ -5,7 +5,9 @@ const nextConfig = {
   env: {
     'YTAPI': process.env.YTAPI,
     'TOKEN_KEY': process.env.TOKEN_KEY,
-    'Stripe_Test_Key': process.env.Stripe_Test_Key
+    'Stripe_Test_Key': process.env.Stripe_Test_Key,
+    'LOCAL_BACKEND': process.env.LOCAL_BACKEND,
+    'HOST_BACKEND': process.env.HOST_BACKEND
   },
   images: {
     // remotePatterns: [
