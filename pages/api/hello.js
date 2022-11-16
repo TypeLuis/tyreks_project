@@ -5,9 +5,5 @@
 
 export default function handler(req, res) {
   const { pid } = req.query
-  // console.log(res)
-  // req.hi = 'hi'
-  console.log(pid)
-  // console.log(req.query)
   res.status(200).json({ name: 'John Doe', query: pid ? pid : 'None', dick: 'chaney' })
 }

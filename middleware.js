@@ -15,10 +15,11 @@ export const config = {
 
 export async function middleware(req, ev) {
 
-    const token = req.headers.get("x-access-toke");
+    const token = req.headers.get("x-access-token");
 
     console.log(req.nextUrl)
 
+    // function that gets message and status through parameter and creates link with both a queries
     const errorFunction = (msg, sts) => {
         const message = msg
         const status = sts
@@ -29,23 +30,19 @@ export async function middleware(req, ev) {
 
 
     if (!token) {
-        const error = errorFunction('A token is required for authentication', 401)
-        return NextResponse.redirect(error)
+        // creates error link then redirects to the error response link
+        const errorLink = errorFunction('A token is required for authentication', 401)
+        return NextResponse.redirect(errorLink)
     }
     try {
         const secret = process.env.TOKEN_KEY;
 
-        const decoded = await jwtVerify(token, new TextEncoder().encode(secret))
+        await jwtVerify(token, new TextEncoder().encode(secret))
 
-        // req.headers.append(decoded.payload.message)
-        // req.body = { ...req.body, payload: decoded.payload }
-        // req.headers.set('payload', decoded.payload.message);
-        NextRequest.set('payload', decoded.payload)
-        req.payload = decoded.payload;
     } catch (err) {
         console.log(err)
-        const error = errorFunction('Invalid Token', 403)
-        return NextResponse.redirect(error)
+        const errorLink = errorFunction('Invalid Token', 403)
+        return NextResponse.redirect(errorLink)
 
         // NextResponse.json({ message: 'Invalid Token' }, { status: 403 })
     }
