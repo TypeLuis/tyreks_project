@@ -28,9 +28,13 @@ const Shop = (props) => {
                     'x-access-token': token
                 }
             })
+            console.log(process.env.BACKEND_URL)
             console.log(response)
         } catch (error) {
             // console.log(error)
+            // console.log(process.env.BACKEND_URL)
+            console.log(process.env.BACKEND_URL)
+            console.log(error)
             console.log(error.response.data.Message, error.response.status)
         }
     }
