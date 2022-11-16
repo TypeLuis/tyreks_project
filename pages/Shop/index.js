@@ -63,11 +63,7 @@ export const getStaticProps = async () => {
         .sign(new TextEncoder().encode(secret))
 
     console.log(process.env.BACKEND_URL)
-    const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/products`, {
-        headers: {
-            'x-access-token': token
-        }
-    })
+    const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/products`)
 
     const products = response.data.products.data
 
@@ -85,11 +81,7 @@ export const getStaticProps = async () => {
                     const promise = new Promise(async (resolve, reject) => {
 
                         try {
-                            const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${item.default_price}`, {
-                                headers: {
-                                    'x-access-token': token
-                                }
-                            })
+                            const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${item.default_price}`)
                             const price = response.data.price.unit_amount / 100
                             const checkImages = item.metadata.images
                             const obj = {
