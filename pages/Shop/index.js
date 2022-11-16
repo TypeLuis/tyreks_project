@@ -4,7 +4,6 @@ import classes from '../../styles/Shop.module.scss'
 
 import { SignJWT } from 'jose'
 import axios from 'axios'
-// import { headers } from '../../next.config'
 
 
 const Shop = (props) => {
@@ -23,7 +22,6 @@ const Shop = (props) => {
                 .sign(new TextEncoder().encode(secret))
 
 
-            console.log(process.env.BACKEND_URL)
             const response = await axios.get(`${process.env.BACKEND_URL}/hello`, {
                 headers: {
                     'x-access-token': token
@@ -31,9 +29,6 @@ const Shop = (props) => {
             })
             console.log(response)
         } catch (error) {
-            // console.log(error)
-            // console.log(process.env.BACKEND_URL)
-            console.log(process.env.BACKEND_URL)
             console.log(error)
             console.log(error.response.data.Message, error.response.status)
         }
@@ -66,7 +61,6 @@ export const getStaticProps = async () => {
         .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
         .sign(new TextEncoder().encode(secret))
 
-    console.log(process.env.BACKEND_URL)
     const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/products`, {
         headers: {
             'x-access-token': token
