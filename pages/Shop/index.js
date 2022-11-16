@@ -23,12 +23,12 @@ const Shop = (props) => {
                 .sign(new TextEncoder().encode(secret))
 
 
-            const response = await axios.get(`https://zombiekillerdeathtrap.netlify.app/api/hello`, {
+            console.log(process.env.BACKEND_URL)
+            const response = await axios.get(`${process.env.BACKEND_URL}/hello`, {
                 headers: {
                     'x-access-token': token
                 }
             })
-            console.log(process.env.BACKEND_URL)
             console.log(response)
         } catch (error) {
             // console.log(error)
