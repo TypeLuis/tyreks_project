@@ -63,7 +63,11 @@ export const getStaticProps = async () => {
         .sign(new TextEncoder().encode(secret))
 
     console.log(process.env.BACKEND_URL)
-    const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/products`)
+    const response = await axios.get(`https://zombiekillerdeathtrap.netlify.app/api/Stripe/products`, {
+        headers: {
+            'x-access-token': token
+        }
+    })
 
     const products = response.data.products.data
 
@@ -76,32 +80,31 @@ export const getStaticProps = async () => {
         products.map(async (item, i) => {
             if (item.default_price) {
 
-                try {
+                const promise = new Promise(async (resolve, reject) => {
 
-                    const promise = new Promise(async (resolve, reject) => {
-
-                        try {
-                            const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${item.default_price}`)
-                            const price = response.data.price.unit_amount / 100
-                            const checkImages = item.metadata.images
-                            const obj = {
-                                ...item,
-                                price: price,
-                                all_images: checkImages ? checkImages.split(',') : item.images
+                    try {
+                        const response = await axios.get(`https://zombiekillerdeathtrap.netlify.app/api/Stripe/price?price_data=${item.default_price}`, {
+                            headers: {
+                                'x-access-token': token
                             }
-
-                            resolve(obj)
-
-                        } catch (error) {
-                            reject(error)
+                        })
+                        const price = response.data.price.unit_amount / 100
+                        const checkImages = item.metadata.images
+                        const obj = {
+                            ...item,
+                            price: price,
+                            all_images: checkImages ? checkImages.split(',') : item.images
                         }
 
-                    })
+                        resolve(obj)
 
-                    promises.push(promise);
-                } catch (error) {
-                    console.log(error)
-                }
+                    } catch (error) {
+                        reject(error)
+                    }
+
+                })
+
+                promises.push(promise);
 
             }
 
