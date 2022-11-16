@@ -31,6 +31,7 @@ const Donate = () => {
         show.opacity === 0 ? setShow(reveal) : setShow(unveal)
         console.log(show)
     }
+    console.log(process.env.BACKEND_URL)
     return (
         <div className={classes['Donate_Container']}>
             <h1>Donate</h1>

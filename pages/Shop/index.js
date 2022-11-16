@@ -62,6 +62,7 @@ export const getStaticProps = async () => {
         .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
         .sign(new TextEncoder().encode(secret))
 
+    console.log(process.env.BACKEND_URL)
     const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/products`, {
         headers: {
             'x-access-token': token
@@ -70,6 +71,8 @@ export const getStaticProps = async () => {
 
     const products = response.data.products.data
 
+
+
     const Retrieve_All_Data = async () => {
 
         const promises = []
@@ -77,31 +80,36 @@ export const getStaticProps = async () => {
         products.map(async (item, i) => {
             if (item.default_price) {
 
-                const promise = new Promise(async (resolve, reject) => {
+                try {
 
-                    try {
-                        const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${item.default_price}`, {
-                            headers: {
-                                'x-access-token': token
+                    const promise = new Promise(async (resolve, reject) => {
+
+                        try {
+                            const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${item.default_price}`, {
+                                headers: {
+                                    'x-access-token': token
+                                }
+                            })
+                            const price = response.data.price.unit_amount / 100
+                            const checkImages = item.metadata.images
+                            const obj = {
+                                ...item,
+                                price: price,
+                                all_images: checkImages ? checkImages.split(',') : item.images
                             }
-                        })
-                        const price = response.data.price.unit_amount / 100
-                        const checkImages = item.metadata.images
-                        const obj = {
-                            ...item,
-                            price: price,
-                            all_images: checkImages ? checkImages.split(',') : item.images
+
+                            resolve(obj)
+
+                        } catch (error) {
+                            reject(error)
                         }
 
-                        resolve(obj)
+                    })
 
-                    } catch (error) {
-                        reject(error)
-                    }
-
-                })
-
-                promises.push(promise);
+                    promises.push(promise);
+                } catch (error) {
+                    console.log(error)
+                }
 
             }
 
