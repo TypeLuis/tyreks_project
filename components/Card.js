@@ -219,14 +219,18 @@ const Card = (props) => {
 
                     <div style={{ '--num': images.length + 1 }} className={`${classes.images}`}>
                         {images.map((item, i) => {
+                            // console.log(item.includes('https://'))
+
+                            const image = item.includes('https://') ? item : `https://${item}`
+
                             return (
 
                                 // utilize in React.js
-                                // <img className={i === imageNum && classes.newImage} src={item} />
+                                // <img key={i} className={i === imageNum && classes.newImage} src={item} />
 
                                 // Utilize in Next.js
                                 <div key={i} className={`${classes.imageDiv} ${i === imageNum && classes.newImage}`}>
-                                    <Image layout='fill' src={item} />
+                                    <Image layout='fill' src={image} />
                                 </div>
                             )
                         })}

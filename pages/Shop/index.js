@@ -1,10 +1,8 @@
 import React from 'react'
 import Card from '../../components/Card'
-import Images from '../../components/Images'
 import classes from '../../styles/Shop.module.scss'
 
 import { SignJWT } from 'jose'
-import { sign } from 'jsonwebtoken'
 import axios from 'axios'
 // import { headers } from '../../next.config'
 
@@ -39,11 +37,17 @@ const Shop = (props) => {
         }
     }
 
-    console.log(props.test)
+    console.log(props.result)
 
     return (
         <div style={style}>
-            <Card images={Images} name='Fleece' price={100} />
+            {props.result.map((item, i) => {
+
+                return (
+
+                    <Card images={item.all_images} name={item.name} price={item.price} />
+                )
+            })}
 
             <h1 onClick={() => { handleClick() }}>test</h1>
         </div>
@@ -109,12 +113,12 @@ export const getStaticProps = async () => {
         return result
     }
 
-    console.log(result)
+    // console.log( await Retrieve_All_Data())
 
     return {
         'props': {
-            'result': products,
-            'test': result
+            'products': products,
+            'result': await Retrieve_All_Data()
         },
     }
 

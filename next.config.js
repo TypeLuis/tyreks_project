@@ -16,10 +16,7 @@ const nextConfig = {
     //     pathname: '**',
     //   },
     // ],
-    domains: ['images.unsplash.com']
-  },
-  experimental: {
-    allowMiddlewareResponseBody: true,
+    domains: ['images.unsplash.com', 'shorturl.at', 'files.stripe.com']
   },
 }
 
