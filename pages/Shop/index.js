@@ -4,6 +4,7 @@ import classes from '../../styles/Shop.module.scss'
 
 import { SignJWT } from 'jose'
 import axios from 'axios'
+import Functions from '../../Functions'
 
 
 const Shop = (props) => {
@@ -57,19 +58,8 @@ const Shop = (props) => {
 export default Shop
 
 export const getStaticProps = async () => {
-    const secret = process.env.TOKEN_KEY
+    const products = await Functions.getProducts()
 
-    const token = await new SignJWT({ message: 'message' })
-        .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
-        .sign(new TextEncoder().encode(secret))
-
-    const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/products`, {
-        headers: {
-            'x-access-token': token
-        }
-    })
-
-    const products = response.data.products.data
 
     const Retrieve_All_Data = async () => {
 
@@ -81,24 +71,9 @@ export const getStaticProps = async () => {
                 const promise = new Promise(async (resolve, reject) => {
 
                     try {
-                        const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${item.default_price}`, {
-                            headers: {
-                                'x-access-token': token
-                            }
-                        })
-                        const price = response.data.price.unit_amount / 100
-                        const checkImages = item.metadata.images
-                        const obj = {
-                            ...item,
-                            price: price,
-                            all_images: checkImages ? checkImages.split(',') : item.images
-                        }
-
+                        const obj = await Functions.getProductObject(item);
                         resolve(obj)
-
-                    } catch (error) {
-                        reject(error)
-                    }
+                    } catch (error) { reject(error) }
 
                 })
 
