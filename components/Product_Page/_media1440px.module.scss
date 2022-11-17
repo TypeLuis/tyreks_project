@@ -1,0 +1,132 @@
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 77%;
+    margin: 0 auto;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    gap: 10rem;
+    padding: 9rem 5rem;
+  }
+
+  .imageBox {
+    width: 100%;
+    max-width: 1000px;
+
+    .product_hero {
+      height: 750px;
+      border-radius: 1.5rem;
+      //   max-width: 1000px;
+    }
+
+    .previous,
+    .next {
+      display: none;
+    }
+
+    .thumb_arrow {
+      position: absolute;
+      top: 35%;
+      //   transform: translateX(0%);
+
+      //   background-color: $orange;
+      border-radius: 50%;
+      width: 4rem;
+      height: 4rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      transition: all 0.3s ease;
+    }
+
+    .thumb_arrow.next {
+      transform: translateX(165%);
+    }
+
+    .thumb_arrow.previous {
+      transform: translateX(-165%);
+    }
+
+    .thumb_gallery {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 3rem;
+      position: relative;
+
+      .pic {
+        display: flex;
+        width: 20%;
+        height: fit-content;
+        overflow: hidden;
+        border-radius: 1rem;
+
+        img {
+          width: 100%;
+          height: 176px;
+          object-fit: cover;
+
+          &:hover {
+            opacity: 0.75;
+          }
+        }
+      }
+
+      .active {
+        border: 2px solid $orange;
+        img {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  .product {
+    width: 100%;
+    padding: 3rem 0 3rem 3rem;
+
+    .title {
+      font-size: 4.4rem;
+      margin-top: 1.8rem;
+    }
+
+    .description {
+      margin-top: 3.5rem;
+      font-size: 1.63rem;
+    }
+
+    .price_wrapper {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 2.4rem;
+      gap: 0.8rem;
+    }
+
+    .count_btn_group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+
+      .counter_wrapper {
+        // width: 62%;
+        border-radius: 1rem;
+        padding: 1.2rem 0.5rem;
+        width: Min(62%, 400px);
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,295 @@
+//## Colors
+
+//### Primary
+
+$orange: hsl(26, 100%, 55%);
+$pale-orange: hsl(25, 100%, 94%);
+
+//### Neutral
+
+$very-dark-blue: hsl(220, 13%, 13%);
+$dark-grayish-blue: hsl(219, 9%, 45%);
+$grayish-blue: hsl(220, 14%, 75%);
+$light-grayish-blue: hsl(223, 64%, 98%);
+$white: hsl(0, 0%, 100%);
+$black: hsla(0, 0%, 0%, 0.75); //(with 75% opacity for lightbox background)
+
+// image Box
+.imageBox {
+  position: relative;
+
+  //margin-top: 1rem;
+
+  .product_hero {
+    width: 100%;
+    max-height: 1000px;
+    // height: 1000px;
+    object-fit: cover;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .previous {
+    left: 4%;
+
+    &:hover {
+      left: 3%;
+    }
+  }
+
+  .next {
+    right: 4%;
+
+    &:hover {
+      right: 3%;
+    }
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background-color: $white;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+  }
+
+  .thumb_gallery {
+    display: none;
+  }
+}
+
+// Product - text page
+
+.product {
+  padding: 2rem 2.4rem 4.4rem 2.4rem;
+  font-size: 62.5%;
+
+  .company_name {
+    text-transform: uppercase;
+    font-size: Clamp(0.8rem, 4vw, 1.2rem);
+    font-weight: 700;
+    color: $orange;
+    letter-spacing: 0.18rem;
+  }
+
+  .title {
+    color: $very-dark-blue;
+    font-size: Clamp(1rem, 8vw, 2.8rem);
+    font-weight: 700;
+    margin-top: 1.3rem;
+    line-height: 118%;
+  }
+
+  .description {
+    font-size: Clamp(1rem, 5vw, 1.5rem);
+    color: $dark-grayish-blue;
+    line-height: 165%;
+    margin-top: 1.6rem;
+  }
+
+  .price_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // margin: 0 auto;
+    margin-top: 2rem;
+
+    .price {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    .group {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .price {
+        font-size: Clamp(1rem, 8vw, 3rem);
+        font-weight: 700;
+      }
+
+      .discount {
+        font-size: Clamp(1rem, 5vw, 1.5rem);
+        font-weight: 700;
+        color: $orange;
+        background-color: $pale-orange;
+        margin-left: Min(5%, 1.4rem);
+        padding: Min(2%, 0.5rem) Min(4%, 1rem);
+        border-radius: 0.5rem;
+      }
+    }
+
+    .old_price {
+      font-size: Clamp(1rem, 5vw, 1.7rem);
+      font-weight: 700;
+      color: $grayish-blue;
+      text-decoration: line-through;
+    }
+  }
+
+  .counter_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $light-grayish-blue;
+    padding: 1.2rem 2.4rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    height: 70px;
+    width: 100%;
+    color: black;
+    // min-width: Min(100%, 400px);
+    // width: Min(100%, 400px);
+
+    .counter {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .btnMinus,
+    .btnPlus {
+      cursor: pointer;
+      padding: 1rem;
+      border-radius: 0.5rem; //optional
+
+      &:hover {
+        opacity: 0.5;
+        background-color: $pale-orange; //optional
+      }
+    }
+  }
+
+  .btn {
+    background-color: $orange;
+    color: $white;
+
+    margin-top: 1.5rem;
+    height: 3em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+
+    font-size: Clamp(1rem, 5vw, 1.55rem);
+    font-weight: 700;
+    border-radius: 1rem;
+
+    padding: 1.9rem;
+
+    img {
+      height: 1.5rem;
+      filter: brightness(300%);
+    }
+
+    box-shadow: 0px 10px 20px 0px $pale-orange;
+    cursor: pointer;
+  }
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+
+  /* Modal Content (image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  /* Caption of Modal Image */
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+  }
+
+  /* Add Animation */
+  .modal-content,
+  #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+
+  @-webkit-keyframes zoom {
+    from {
+      -webkit-transform: scale(0)
+    }
+
+    to {
+      -webkit-transform: scale(1)
+    }
+  }
+
+  @keyframes zoom {
+    from {
+      transform: scale(0)
+    }
+
+    to {
+      transform: scale(1)
+    }
+  }
+
+  /* The Close Button */
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* 100% Image Width on Smaller Screens */
+  @media only screen and (max-width: 700px) {
+    .modal-content {
+      width: 100%;
+    }
+  }
+}
+
+
+
+@import "./media1440px.module";
