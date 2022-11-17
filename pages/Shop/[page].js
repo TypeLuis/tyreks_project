@@ -34,31 +34,6 @@ const Page = (props) => {
 export default Page
 
 
-const getToken = async () => {
-    const secret = process.env.TOKEN_KEY
-
-    const token = await new SignJWT({ message: 'message' })
-        .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
-        .sign(new TextEncoder().encode(secret))
-    return token
-}
-
-
-const getProducts = async () => {
-    const token = await getToken()
-
-    const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/products`, {
-        headers: {
-            'x-access-token': token
-        }
-    })
-
-    const products = response.data.products.data
-
-    return products
-}
-
-
 export const getStaticPaths = async () => {
 
     const products = await getProducts()
