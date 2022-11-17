@@ -65,13 +65,13 @@ export const getStaticProps = async () => {
 
         const promises = []
 
-        products.map(async (item, i) => {
-            if (item.default_price) {
+        products.map(async (product, i) => {
+            if (product.default_price) {
 
                 const promise = new Promise(async (resolve, reject) => {
 
                     try {
-                        const obj = await Functions.getProductObject(item);
+                        const obj = await Functions.getProductObject(product);
                         resolve(obj)
                     } catch (error) { reject(error) }
 
@@ -87,8 +87,6 @@ export const getStaticProps = async () => {
 
         return result
     }
-
-    // console.log( await Retrieve_All_Data())
 
     return {
         'props': {
