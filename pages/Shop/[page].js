@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import ProductPage from '../../components/Product_Page/ProductPage'
 import { SignJWT } from 'jose'
 import axios from 'axios'
+import Functions from '../../Functions'
 
 
 
@@ -32,7 +33,7 @@ const Page = (props) => {
 
 export default Page
 
-// function that gets token
+
 const getToken = async () => {
     const secret = process.env.TOKEN_KEY
 
@@ -42,7 +43,7 @@ const getToken = async () => {
     return token
 }
 
-// function that returns product from Stripe
+
 const getProducts = async () => {
     const token = await getToken()
 
@@ -77,22 +78,25 @@ export const getStaticPaths = async () => {
 
 
 export const getStaticProps = async (context) => {
-    const products = await getProducts()
+    const products = await Functions.getProducts()
     const product = products.filter((product) => product.name === context.params.page)[0]
 
-    const token = await getToken()
-    const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${product.default_price}`, {
-        headers: {
-            'x-access-token': token
-        }
-    })
-    const price = response.data.price.unit_amount / 100
-    const checkImages = product.metadata.images
-    const obj = {
-        ...product,
-        price: price,
-        all_images: checkImages ? checkImages.split(',') : product.images
-    }
+    const obj = await Functions.getProductObject(product)
+
+    // const token = await getToken()
+
+    // const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${product.default_price}`, {
+    //     headers: {
+    //         'x-access-token': token
+    //     }
+    // })
+    // const price = response.data.price.unit_amount / 100
+    // const checkImages = product.metadata.images
+    // const obj = {
+    //     ...product,
+    //     price: price,
+    //     all_images: checkImages ? checkImages.split(',') : product.images
+    // }
 
     return {
         'props': { 'product': obj }
