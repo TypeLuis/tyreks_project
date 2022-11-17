@@ -58,21 +58,6 @@ export const getStaticProps = async (context) => {
 
     const obj = await Functions.getProductObject(product)
 
-    // const token = await getToken()
-
-    // const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${product.default_price}`, {
-    //     headers: {
-    //         'x-access-token': token
-    //     }
-    // })
-    // const price = response.data.price.unit_amount / 100
-    // const checkImages = product.metadata.images
-    // const obj = {
-    //     ...product,
-    //     price: price,
-    //     all_images: checkImages ? checkImages.split(',') : product.images
-    // }
-
     return {
         'props': { 'product': obj }
     }
