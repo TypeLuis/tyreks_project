@@ -15,13 +15,7 @@ const Shop = (props) => {
     const handleClick = async () => {
         try {
 
-            const secret = process.env.TOKEN_KEY
-            // const token = sign({ message: 'message' }, secret)
-
-            const token = await new SignJWT({ message: 'message' })
-                .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
-                .sign(new TextEncoder().encode(secret))
-
+            const token = await Functions.getToken('')
 
             const response = await axios.get(`${process.env.BACKEND_URL}/hello`, {
                 headers: {
