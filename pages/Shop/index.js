@@ -34,6 +34,8 @@ const Shop = (props) => {
         }
     }
 
+    console.log(props.products)
+
     return (
         <div style={style}>
             {props.result.map((item, i) => {

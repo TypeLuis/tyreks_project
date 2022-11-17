@@ -17,7 +17,7 @@ export async function middleware(req, ev) {
 
     const token = req.headers.get("x-access-token");
 
-    console.log(req.nextUrl)
+    // console.log(req.nextUrl)
 
     // function that gets message and status through parameter and creates link with both a queries
     const errorFunction = (msg, sts) => {
