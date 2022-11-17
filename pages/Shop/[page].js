@@ -36,7 +36,7 @@ export default Page
 
 export const getStaticPaths = async () => {
 
-    const products = await getProducts()
+    const products = await Functions.getProducts()
 
 
     const paths = products.map(product => {

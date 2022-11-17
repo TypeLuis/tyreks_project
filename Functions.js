@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const Functions = {}
 
-// function that gets token
+// function that gets token, message key as a parameter
 Functions.getToken = async (message) => {
     const secret = process.env.TOKEN_KEY
 
@@ -28,6 +28,7 @@ Functions.getProducts = async () => {
     return products
 }
 
+// Function that returns product obj with price and images included, product obj needed as parameter
 Functions.getProductObject = async (product) => {
     const token = await Functions.getToken()
 
