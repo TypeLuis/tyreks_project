@@ -326,7 +326,7 @@ const Product = (props) => {
                     :
 
                     <>
-
+                        <div className={classes.price}>${props.originalPrice}.00</div>
                     </>
 
                 }

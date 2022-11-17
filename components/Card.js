@@ -32,7 +32,7 @@ const Card = (props) => {
     const router = useRouter()
 
     const handleClick = () => {
-        router.push(`/Shop/${props.category ? props.category : 'console'}/${props.name ? props.name : 'PS5'}`)
+        router.push(`/Shop/${props.name ? props.name : 'Fleece'}`)
     }
 
 
