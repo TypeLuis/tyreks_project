@@ -48,6 +48,7 @@ export const getStaticPaths = async () => {
 
     const products = await getProducts()
 
+
     const paths = products.map(product => {
         return {
             params: { 'page': product.name }
@@ -63,9 +64,9 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
     const products = await getProducts()
+    const product = products.filter((product) => product.name === context.params.page)[0]
 
-    console.log('AHHHH', context)
     return {
-        'props': { 'hi': 'hi' }
+        'props': { 'product': product }
     }
 }
