@@ -6,6 +6,7 @@ import previous from './icon-previous.svg'
 import minus from './icon-minus.svg'
 import plus from './icon-plus.svg'
 import cart from './icon-cart.svg'
+import Image from 'next/image'
 
 
 const ProductPage = (props) => {
@@ -34,15 +35,15 @@ const ProductPage = (props) => {
 
         'https://images.unsplash.com/photo-1649512848285-04210dc58d21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
     ]
-    useEffect(() => {
+    const imagesProp = props.images?.map(item =>
+        item.includes('https://') ? item : `https://${item}`
+    )
 
-        console.log(window.innerWidth)
-    })
     return (
         <div className={classes.content}>
             <ImageBox
 
-                images={props.images ? props.images : images}
+                images={props.images ? imagesProp : images}
 
             ></ImageBox>
 
@@ -58,7 +59,7 @@ const ProductPage = (props) => {
 
                 originalPrice={props.originalPrice ? props.originalPrice : 250}
 
-                discountPrice={props.discountPrice ? props.discountPrice : 125}
+                discountPrice={props.discountPrice ? [props.discountPrice, true] : [125, false]}
 
             ></Product>
         </div>
@@ -247,6 +248,7 @@ const ImageBox = (props) => {
         <section className={classes.imageBox}>
             <img onClick={(e) => { imgClickModal(e) }} className={classes.product_hero} src={mainImg} alt="image product" />
 
+
             <div id="myModal" className={classes.modal}>
                 <span onClick={(e) => { closeModal(e) }} className={classes.close}>&times;</span>
                 <img className={classes['modal-content']} src={mainImg} id="img01" />
@@ -294,7 +296,7 @@ const ImageBox = (props) => {
 
 const Product = (props) => {
     const [counter, setCounter] = useState(1)
-
+    console.log(props.discountPrice)
 
     return (
         <section className={classes.product}>
@@ -306,15 +308,31 @@ const Product = (props) => {
                 {props.desc}
             </div>
 
+
             <div className={classes.price_wrapper}>
+                {props.discountPrice[1] ?
 
-                <div className={classes.group}>
-                    <div className={classes.price}>${props.discountPrice}.00</div>
-                    <div className={classes.discount}>50%</div>
-                </div>
+                    <>
+                        <div className={classes.group}>
+                            <div className={classes.price}>${props.discountPrice[0]}.00</div>
+                            <div className={classes.discount}>50%</div>
+                        </div>
 
-                <div className={classes.old_price}>${props.originalPrice}.00</div>
+                        <div className={classes.old_price}>${props.originalPrice}.00</div>
+
+                    </>
+
+
+                    :
+
+                    <>
+
+                    </>
+
+                }
             </div>
+
+
 
             <div className={classes.count_btn_group}>
 
