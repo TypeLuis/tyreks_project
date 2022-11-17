@@ -5,6 +5,8 @@ import ProductPage from '../../components/Product_Page/ProductPage'
 import { SignJWT } from 'jose'
 import axios from 'axios'
 
+
+
 const Page = () => {
     const router = useRouter()
     const query = router.query.page
@@ -21,7 +23,9 @@ const Page = () => {
 
 export default Page
 
-export const getStaticPaths = async () => {
+
+// function that returns product from Stripe
+const getProducts = async () => {
     const secret = process.env.TOKEN_KEY
 
     const token = await new SignJWT({ message: 'message' })
@@ -35,6 +39,14 @@ export const getStaticPaths = async () => {
     })
 
     const products = response.data.products.data
+
+    return products
+}
+
+
+export const getStaticPaths = async () => {
+
+    const products = await getProducts()
 
     const paths = products.map(product => {
         return {
@@ -50,6 +62,7 @@ export const getStaticPaths = async () => {
 
 
 export const getStaticProps = async (context) => {
+    const products = await getProducts()
 
     console.log('AHHHH', context)
     return {
