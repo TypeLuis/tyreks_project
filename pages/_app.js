@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
     const checkHeight = () => {
       // const rect = pageRef.current?.getClientRects()[0].height
       const refHeight = pageRef.current?.childNodes[0].offsetHeight
-      console.log(refHeight)
+      // console.log(refHeight)
       setHeight(pageInfo)
       return refHeight
     }

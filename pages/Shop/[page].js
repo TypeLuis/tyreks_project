@@ -13,7 +13,7 @@ const Page = (props) => {
     // console.log(router.query.page)
     const { all_images, name, price } = props.product
 
-    // console.log(name)
+    // console.log(props)
 
 
 

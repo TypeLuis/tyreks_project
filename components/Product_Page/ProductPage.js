@@ -232,13 +232,13 @@ const ImageBox = (props) => {
     }
 
     const imgClickModal = (e) => {
-        console.log(e.target.parentNode.childNodes[1])
+        // console.log(e.target.parentNode.childNodes[1])
         const modalNode = e.target.parentNode.childNodes[1]
         modalNode.style.display = 'block'
     }
 
     const closeModal = (e) => {
-        console.log(e.target.parentNode)
+        // console.log(e.target.parentNode)
         const modalNode = e.target.parentNode
         modalNode.style.display = 'none'
     }
@@ -296,7 +296,25 @@ const ImageBox = (props) => {
 
 const Product = (props) => {
     const [counter, setCounter] = useState(1)
-    console.log(props.discountPrice)
+
+    const handleClick = () => {
+        console.log(props.name, props.originalPrice, counter)
+
+        const cart = localStorage.getItem('cart')
+
+        // if (cart) {
+        //     console.log(localStorage.getItem('cart'))
+        // } else {
+
+        localStorage.setItem('cart', [JSON.stringify({
+            'name': props.name,
+            'price': props.originalPrice,
+            'quantity': counter
+        })])
+        // }
+        console.log(localStorage.getItem('cart'))
+
+    }
 
     return (
         <section className={classes.product}>
@@ -346,7 +364,7 @@ const Product = (props) => {
                 </div>
 
                 {/* Add Cart */}
-                <div className={classes.btn}>
+                <div className={classes.btn} onClick={() => { handleClick() }}>
                     <img src={cart.src} alt="icon cart" />
                     <p>Add to cart</p>
                 </div>
