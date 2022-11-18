@@ -61,7 +61,7 @@
 
             .info {
                 // align-items: center;
-
+                // margin-block: 1em;
                 font-weight: bold;
 
                 span:first-of-type {
@@ -69,7 +69,7 @@
                     &::first-letter {
                         font-size: larger;
                         text-transform: uppercase;
-                        color: green;
+                        color: white;
                     }
                 }
 
