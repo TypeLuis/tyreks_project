@@ -2,24 +2,39 @@ import React, { useEffect, useState } from 'react'
 import { jwtVerify } from 'jose'
 import { loadStripe } from '@stripe/stripe-js';
 import classes from '../styles/Cart.module.scss'
+import Functions from '../Functions';
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState()
 
+    const handleChange = async (e, product) => {
 
+        const cart = localStorage.getItem('cart')
 
-    const addItem = (newItem) => {
+        const secret = process.env.TOKEN_KEY;
 
-        function itemFilter(item) {
-            return item.name === newItem.name && item.price === newItem.price
+        const shoppingCart = await (await jwtVerify(cart, new TextEncoder().encode(secret))).payload.message
+
+        let res
+
+        if (e.target.value === 'Remove') {
+            // https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
+            res = shoppingCart.filter(item => item.name !== product.name)
         }
-        let existingItems = shoppingCart.filter(itemFilter)
+        else {
 
-        if (existingItems.length > 0) {
-            existingItems[0].quantity += newItem.quantity
-        } else {
-            shoppingCart.push(newItem)
+            product.quantity = Number(e.target.value)
+
+            // https://stackoverflow.com/questions/37585309/replacing-objects-in-array
+            res = shoppingCart.map(obj => [product].find(o => o.name === obj.name) || obj)
         }
+
+        console.log(res)
+        setCartItems(res)
+
+        const token = await Functions.getToken(res)
+
+        localStorage.setItem('cart', token)
 
     }
 
@@ -28,9 +43,7 @@ const Cart = () => {
 
         const secret = process.env.TOKEN_KEY;
 
-        const shoppingCart = jwtVerify(cart, new TextEncoder().encode(secret)).then(item => setCartItems(item.payload.message))
-
-        console.log(shoppingCart.then(item => item?.payload.message))
+        jwtVerify(cart, new TextEncoder().encode(secret)).then(item => setCartItems(item.payload.message))
 
     }, [])
     return (
@@ -51,7 +64,7 @@ const Cart = () => {
                                         </div>
                                         <div className={classes.selection}>
                                             <span>Quantity</span>
-                                            <select>
+                                            <select onChange={(e) => { handleChange(e, item) }}>
                                                 <option value='Remove'>Remove</option>
                                                 {Array.from({ length: item.maxQuantity }, (_, i) => i + 1).map((num, i) => {
                                                     const selected = num === item.quantity
