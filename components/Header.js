@@ -41,7 +41,7 @@ const Header = () => {
                 </span>
             </nav>
 
-            {/* <div className={classes.spacer}></div> */}
+            <div className={classes.spacer}></div>
 
         </>
     )

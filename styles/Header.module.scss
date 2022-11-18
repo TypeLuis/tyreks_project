@@ -17,14 +17,12 @@
         &:hover {
             cursor: pointer;
         }
-
-
     }
 
     .cart {
         position: absolute;
         right: 0;
-        transform: translate(-60%, 30%);
+        transform: translate(-60%, 35%);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -35,31 +33,32 @@
             position: absolute;
             color: green;
             width: 100%;
-            bottom: 68%;
-            left: 90%;
+            bottom: 73%;
+            left: 97%;
             overflow: hidden;
             transition: 1s;
             -webkit-text-stroke: 3px green;
-            opacity: 0;
+            // opacity: 0;
+            transform: scale(0)
         }
 
         &::after {
             position: absolute;
             z-index: -1;
             content: '';
-            height: 50%;
-            width: 80%;
-            bottom: 58%;
-            left: 61%;
+            height: 70%;
+            width: 70%;
+            bottom: 60%;
+            left: 73%;
             border-radius: 50%;
             background-color: red;
             transition: 1s;
-            opacity: 0;
+            transform: scale(0) // opacity: 0;
         }
 
         &.items::after,
         &.items::before {
-            opacity: 1;
+            transform: scale(1) // opacity: 1;
         }
 
         &:hover {
@@ -82,7 +81,6 @@
 
 
         li {
-            // margin: 0;
             transition: .5s ease-in;
 
             &:hover {
@@ -101,5 +99,5 @@
 
 .spacer {
     // margin-bottom: 65px;
-    // padding-bottom: 65px;
+    padding-bottom: 65px;
 }
