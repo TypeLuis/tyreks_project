@@ -64,6 +64,8 @@ const ProductPage = (props) => {
 
                 discountPrice={props.discountPrice ? [props.discountPrice, true] : [125, false]}
 
+                image={props.images ? imagesProp[0] : images[0]}
+
             ></Product>
         </div>
     )
@@ -317,7 +319,7 @@ const Product = (props) => {
             const addItem = (newItem) => {
 
                 function itemFilter(item) {
-                    return item.name === newItem.name && item.price === newItem.price
+                    return item.name === newItem.name && item.price === newItem.price && item.image === newItem.image
                 }
                 let existingItems = shoppingCart.filter(itemFilter)
 
@@ -332,7 +334,8 @@ const Product = (props) => {
             const shopItem = {
                 'name': props.name,
                 'price': props.originalPrice,
-                'quantity': counter
+                'quantity': counter,
+                'image': props.image
             }
 
             addItem(shopItem)
@@ -352,13 +355,15 @@ const Product = (props) => {
                 {
                     'name': props.name,
                     'price': props.originalPrice,
-                    'quantity': counter
+                    'quantity': counter,
+                    'image': props.image
                 }
             ]
             setCartLength(shopItem.length)
             const token = await Functions.getToken(shopItem)
 
             localStorage.setItem('cart', token)
+            console.log(shopItem)
         }
     }
 
