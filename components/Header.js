@@ -35,7 +35,7 @@ const Header = () => {
                     <li onClick={(e) => { navigator(e) }}>Videos</li>
                 </ul>
 
-                <span data-text={cartLength} className={`${classes.cart} ${cartLength > 0 && classes.items}`}>
+                <span onClick={() => { router.push('/Cart') }} data-text={cartLength} className={`${classes.cart} ${cartLength > 0 && classes.items}`}>
 
                     <Image src={cart} height={40} width={40}></Image>
                 </span>
