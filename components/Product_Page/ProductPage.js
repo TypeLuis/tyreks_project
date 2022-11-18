@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import classes from './ProductPage.module.scss'
+import { AppContext } from '../../context'
 
 import next from './icon-next.svg'
 import previous from './icon-previous.svg'
@@ -298,6 +299,8 @@ const ImageBox = (props) => {
 
 const Product = (props) => {
     const [counter, setCounter] = useState(1)
+    const { cartState } = useContext(AppContext)
+    const [cartLength, setCartLength] = cartState
 
     const handleClick = async () => {
 
@@ -334,6 +337,8 @@ const Product = (props) => {
 
             addItem(shopItem)
 
+            setCartLength(shoppingCart.length)
+
             const token = await Functions.getToken(shoppingCart)
 
             localStorage.setItem('cart', token)
@@ -350,6 +355,7 @@ const Product = (props) => {
                     'quantity': counter
                 }
             ]
+            setCartLength(shopItem.length)
             const token = await Functions.getToken(shopItem)
 
             localStorage.setItem('cart', token)

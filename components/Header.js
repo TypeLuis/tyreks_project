@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import classes from '../styles/Header.module.scss'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import Image from 'next/image'
 import logo from '../Assets/ZKDT_Logo.svg'
+import cart from '../Assets/icon-cart.svg'
+import { jwtVerify } from 'jose'
+import { AppContext } from '../context'
 
 const Header = () => {
+    const { cartState } = useContext(AppContext)
+    const [cartLength, setCartLength] = cartState
+
+
+
     const router = useRouter()
 
     const navigator = (e) => {
@@ -26,6 +34,11 @@ const Header = () => {
                     <li onClick={(e) => { navigator(e) }}>Donate</li>
                     <li onClick={(e) => { navigator(e) }}>Videos</li>
                 </ul>
+
+                <span data-text={cartLength} className={classes.cart}>
+
+                    <Image src={cart} height={40} width={40}></Image>
+                </span>
             </nav>
 
             {/* <div className={classes.spacer}></div> */}

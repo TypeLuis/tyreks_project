@@ -26,6 +26,48 @@
 
     }
 
+    .cart {
+        // height: min-content;
+        position: relative;
+        top: 10%;
+        left: 80%;
+        // transform: translateX(-100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // fill: black;
+        // color: black;
+
+        &::before {
+            z-index: 1;
+            content: attr(data-text);
+            position: absolute;
+            color: green;
+            width: 100%;
+            bottom: 65%;
+            left: 85%;
+            overflow: hidden;
+            transition: 1s;
+            -webkit-text-stroke: 3px green;
+        }
+
+        &::after {
+            position: absolute;
+            z-index: -1;
+            content: '';
+            height: 50%;
+            width: 80%;
+            bottom: 55%;
+            left: 55%;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     ul {
         padding: 0;
         list-style: none;

@@ -3,6 +3,7 @@ import '../styles/globals.scss'
 import classes from '../styles/global.module.scss'
 import { useRef, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { AppWrapper } from '../context'; // context.js
 
 function MyApp({ Component, pageProps }) {
   const [height, setHeight] = useState()
@@ -42,21 +43,25 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <Header />
-      <div className={classes.Page_Content}>
+      <AppWrapper>
+        <Header />
 
-        <div style={{ "height": height }} className={classes.left}>
+        <div className={classes.Page_Content}>
+
+          <div style={{ "height": height }} className={classes.left}>
+          </div>
+
+          <div ref={pageRef} className={classes.middle}>
+
+            <Component setPageInfo={setPageInfo} pageInfo={pageInfo} {...pageProps} />
+
+          </div>
+
+          <div style={{ "height": height }} className={classes.right}>
+          </div>
+
         </div>
-
-        <div ref={pageRef} className={classes.middle}>
-
-          <Component setPageInfo={setPageInfo} pageInfo={pageInfo} {...pageProps} />
-        </div>
-
-        <div style={{ "height": height }} className={classes.right}>
-        </div>
-
-      </div>
+      </AppWrapper>
 
     </>
   )
