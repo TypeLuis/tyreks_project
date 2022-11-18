@@ -53,7 +53,10 @@ const Cart = () => {
                                         <div className={classes.selection}>
                                             <span>Quantity</span>
                                             <select>
-                                                <option></option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option selected="selected">3</option>
+                                                <option>4</option>
                                             </select>
                                         </div>
                                     </div>
