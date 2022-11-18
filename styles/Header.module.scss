@@ -1,23 +1,18 @@
 .navbar {
-    // padding: 0;
-    // flex: 0 1 100%;
     z-index: 2;
     background-color: green;
     position: fixed;
-    // width: 643px;
-    // width: max-content;
+    width: 100%;
     height: 65px;
     display: flex;
-    // align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    // margin: 0;
-    // margin-block: 65px;
-    // margin-bottom: 65px;
+    justify-content: center;
 
 
     .home {
+        position: absolute;
+        left: 0;
         height: min-content;
+
 
         &:hover {
             cursor: pointer;
@@ -27,16 +22,12 @@
     }
 
     .cart {
-        // height: min-content;
-        position: relative;
-        top: 10%;
-        left: 80%;
-        // transform: translateX(-100%);
+        position: absolute;
+        right: 0;
+        transform: translate(-60%, 30%);
         display: flex;
         justify-content: center;
         align-items: center;
-        // fill: black;
-        // color: black;
 
         &::before {
             z-index: 1;
@@ -44,11 +35,12 @@
             position: absolute;
             color: green;
             width: 100%;
-            bottom: 65%;
-            left: 85%;
+            bottom: 68%;
+            left: 90%;
             overflow: hidden;
             transition: 1s;
             -webkit-text-stroke: 3px green;
+            opacity: 0;
         }
 
         &::after {
@@ -57,10 +49,17 @@
             content: '';
             height: 50%;
             width: 80%;
-            bottom: 55%;
-            left: 55%;
+            bottom: 58%;
+            left: 61%;
             border-radius: 50%;
             background-color: red;
+            transition: 1s;
+            opacity: 0;
+        }
+
+        &.items::after,
+        &.items::before {
+            opacity: 1;
         }
 
         &:hover {
@@ -101,5 +100,6 @@
 }
 
 .spacer {
-    padding-bottom: 65px;
+    // margin-bottom: 65px;
+    // padding-bottom: 65px;
 }

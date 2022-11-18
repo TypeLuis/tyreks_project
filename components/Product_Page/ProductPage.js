@@ -56,7 +56,7 @@ const ProductPage = (props) => {
                 Featuring a durable rubber outer sole, they'll withstand everything
                 the weather can offer.`}
 
-                category={props.category ? props.category : 'sneaker company'}
+                category={props.category ? props.category : 'Zombie Killer Death Trap'}
 
                 name={props.name ? props.name : 'Fall Limited Edition Sneakers'}
 
