@@ -6,7 +6,9 @@ import previous from './icon-previous.svg'
 import minus from './icon-minus.svg'
 import plus from './icon-plus.svg'
 import cart from './icon-cart.svg'
-import Image from 'next/image'
+
+import Functions from '../../Functions'
+import { jwtVerify } from 'jose'
 
 
 const ProductPage = (props) => {
@@ -297,23 +299,61 @@ const ImageBox = (props) => {
 const Product = (props) => {
     const [counter, setCounter] = useState(1)
 
-    const handleClick = () => {
-        console.log(props.name, props.originalPrice, counter)
+    const handleClick = async () => {
 
         const cart = localStorage.getItem('cart')
 
-        // if (cart) {
-        //     console.log(localStorage.getItem('cart'))
-        // } else {
+        if (cart) {
+            const secret = process.env.TOKEN_KEY;
 
-        localStorage.setItem('cart', [JSON.stringify({
-            'name': props.name,
-            'price': props.originalPrice,
-            'quantity': counter
-        })])
-        // }
-        console.log(localStorage.getItem('cart'))
+            const shoppingCart = await (await jwtVerify(cart, new TextEncoder().encode(secret))).payload.message
 
+            // Function provided by 
+            // https://stackoverflow.com/questions/56318452/increase-object-quantity-instead-of-creating-a-new-object-in-array
+            // Function adds new Item to cart and if Item is already in cart, adds quantity
+            const addItem = (newItem) => {
+
+                function itemFilter(item) {
+                    return item.name === newItem.name && item.price === newItem.price
+                }
+                let existingItems = shoppingCart.filter(itemFilter)
+
+                if (existingItems.length > 0) {
+                    existingItems[0].quantity += newItem.quantity
+                } else {
+                    shoppingCart.push(newItem)
+                }
+
+            }
+
+            const shopItem = {
+                'name': props.name,
+                'price': props.originalPrice,
+                'quantity': counter
+            }
+
+            addItem(shopItem)
+
+            const token = await Functions.getToken(shoppingCart)
+
+            localStorage.setItem('cart', token)
+
+            console.log(shoppingCart)
+
+            // console.log(decoded)
+        } else {
+
+            const shopItem = [
+                {
+                    'name': props.name,
+                    'price': props.originalPrice,
+                    'quantity': counter
+                }
+            ]
+            const token = await Functions.getToken(shopItem)
+
+            localStorage.setItem('cart', token)
+        }
     }
 
     return (
