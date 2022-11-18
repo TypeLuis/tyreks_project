@@ -52,10 +52,21 @@ const Cart = () => {
                                         <div className={classes.selection}>
                                             <span>Quantity</span>
                                             <select>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option selected="selected">3</option>
-                                                <option>4</option>
+                                                <option value='Remove'>Remove</option>
+                                                {Array.from({ length: item.maxQuantity }, (_, i) => i + 1).map((num, i) => {
+                                                    const selected = num === item.quantity
+                                                    return (
+                                                        <>
+
+                                                            {selected ?
+                                                                <option value={num} selected="selected">{num}</option>
+
+                                                                :
+                                                                <option value={num}>{num}</option>
+                                                            }
+                                                        </>
+                                                    )
+                                                })}
                                             </select>
                                         </div>
                                     </div>

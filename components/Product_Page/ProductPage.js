@@ -66,6 +66,8 @@ const ProductPage = (props) => {
 
                 image={props.images ? imagesProp[0] : images[0]}
 
+                maxQuantity={props.maxQuantity ? props.maxQuantity : 10}
+
             ></Product>
         </div>
     )
@@ -319,7 +321,7 @@ const Product = (props) => {
             const addItem = (newItem) => {
 
                 function itemFilter(item) {
-                    return item.name === newItem.name && item.price === newItem.price && item.image === newItem.image
+                    return item.name === newItem.name && item.price === newItem.price && item.image === newItem.image && item.maxQuantity === newItem.maxQuantity
                 }
                 let existingItems = shoppingCart.filter(itemFilter)
 
@@ -335,7 +337,8 @@ const Product = (props) => {
                 'name': props.name,
                 'price': props.originalPrice,
                 'quantity': counter,
-                'image': props.image
+                'image': props.image,
+                'maxQuantity': props.maxQuantity
             }
 
             addItem(shopItem)
@@ -356,7 +359,8 @@ const Product = (props) => {
                     'name': props.name,
                     'price': props.originalPrice,
                     'quantity': counter,
-                    'image': props.image
+                    'image': props.image,
+                    'maxQuantity': props.maxQuantity
                 }
             ]
             setCartLength(shopItem.length)
@@ -411,7 +415,7 @@ const Product = (props) => {
 
                     <div className={classes.counter}>{counter}</div>
 
-                    <img className={classes.btnPlus} onClick={() => { setCounter(counter + 1) }} src={plus.src} alt="icon plus" />
+                    <img className={classes.btnPlus} onClick={() => { counter < props.maxQuantity && setCounter(counter + 1) }} src={plus.src} alt="icon plus" />
                 </div>
 
                 {/* Add Cart */}
