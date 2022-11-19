@@ -33,8 +33,8 @@ const Success = () => {
                     </ul>
 
                     <ul>
-                        <li>Order Total: <span>${customerData.session.amount_total / 100}</span></li>
-                        <li>Payment Status: <span>{customerData.session.payment_status}</span></li>
+                        <li>Order Total: <span> ${customerData.session.amount_total / 100}</span></li>
+                        <li>Payment Status: <span> {customerData.session.payment_status}</span></li>
                     </ul>
 
                     <p>
