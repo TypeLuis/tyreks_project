@@ -5,7 +5,7 @@ const ErrorPage = () => {
     return (
         <div>
             {/* <ErrorBo */}
-            hi
+            hi Error
         </div>
     )
 }

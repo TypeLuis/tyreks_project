@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { jwtVerify } from 'jose'
 import { loadStripe } from '@stripe/stripe-js';
-import classes from '../styles/Cart.module.scss'
-import Functions from '../Functions';
-import { AppContext } from '../context';
+import classes from '../../styles/Cart.module.scss'
+import Functions from '../../Functions';
+import { AppContext } from '../../context';
 import axios from 'axios';
 
 const Cart = () => {
@@ -55,12 +55,6 @@ const Cart = () => {
             }
         })
         window.location = response.data.url
-        // console.log(response)
-        // const response = await axios.post(`${process.env.BACKEND_URL}/Stripe/checkout_sessions`, {
-        //     headers: {
-        //         'x-access-token': token
-        //     }
-        // })
     }
 
     useEffect(() => {
@@ -69,6 +63,15 @@ const Cart = () => {
         const secret = process.env.TOKEN_KEY;
 
         jwtVerify(cart, new TextEncoder().encode(secret)).then(item => setCartItems(item.payload.message))
+
+        const query = new URLSearchParams(window.location.search);
+        let sessionId = query.get('session_id')
+
+        if (sessionId) {
+            const { customer, session } = axios.get(`${process.env.BACKEND_URL}/Stripe/order_info?session_id=${sessionId}`).then(r => console.log(r.data))
+
+            console.log(customer, session)
+        }
 
     }, [])
     return (

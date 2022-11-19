@@ -2,6 +2,7 @@ const stripe = require('stripe')(process.env.Stripe_Test_Key);
 import { jwtVerify } from 'jose'
 
 export default async function handler(req, res) {
+
     const { cart } = req.body
 
     const secret = process.env.TOKEN_KEY;
@@ -30,8 +31,8 @@ export default async function handler(req, res) {
             const session = await stripe.checkout.sessions.create({
                 line_items: productList,
                 mode: 'payment',
-                success_url: `${req.headers.origin}/?success=true`,
-                cancel_url: `${req.headers.origin}/?canceled=true`,
+                success_url: `${req.headers.origin}/Cart/Success/?session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${req.headers.origin}/Cart/Cancel/?canceled=true`,
             });
             res.json({ 'url': session.url })
             // return { 'url': session.url }
