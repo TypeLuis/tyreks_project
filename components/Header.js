@@ -25,7 +25,8 @@ const Header = () => {
             const secret = process.env.TOKEN_KEY;
 
             jwtVerify(cart, new TextEncoder().encode(secret)).then(r => setCartLength(r.payload.message.length)).catch(e => console.log(e))
-        }
+        } else setCartLength(0)
+
     }, [router.asPath])
 
     const navigator = (e) => {
