@@ -18,8 +18,6 @@ const Header = () => {
 
 
     useEffect(() => {
-        console.log(router)
-        console.log(cartLength)
 
         const cart = localStorage.getItem('cart')
         if (cart) {
