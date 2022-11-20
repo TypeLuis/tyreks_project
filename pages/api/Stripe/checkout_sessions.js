@@ -32,8 +32,13 @@ export default async function handler(req, res) {
                 line_items: productList,
                 mode: 'payment',
 
-                // {CHECKOUT_SESSION_ID} will return session id once completed to recieve information after completion
 
+                metadata: {
+                    'sessionRetrieved': 0
+                },
+
+
+                // {CHECKOUT_SESSION_ID} will return session id once completed to recieve information after completion
                 success_url: `${req.headers.origin}/Cart/Success/?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${req.headers.origin}/Cart/Cancel/?session_id={CHECKOUT_SESSION_ID}`,
             });

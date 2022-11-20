@@ -7,7 +7,7 @@ export default async function handler(req, res) {
         const session = await stripe.checkout.sessions.retrieve(session_id)
         const customer = await stripe.customers.retrieve(session.customer)
 
-        console.log(session)
+        // session.metadata.sessionRetrieved = Number(session.metadata.sessionRetrieved) + 1
         res.status(200).json({
             'session': session,
             'customer': customer

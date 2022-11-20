@@ -8,7 +8,8 @@ const nextConfig = {
     'Stripe_Test_Key': process.env.Stripe_Test_Key,
     'LOCAL_BACKEND': process.env.LOCAL_BACKEND,
     'HOST_BACKEND': process.env.HOST_BACKEND,
-    'BACKEND_URL': process.env.BACKEND_URL
+    'BACKEND_URL': process.env.BACKEND_URL,
+    'endpointSecret': process.env.endpointSecret,
   },
   images: {
     // remotePatterns: [
