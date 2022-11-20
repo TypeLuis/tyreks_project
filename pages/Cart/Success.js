@@ -11,7 +11,7 @@ const Success = () => {
         let sessionId = query.get('session_id')
 
         if (sessionId) {
-            axios.get(`${process.env.BACKEND_URL}/Stripe/order_info?session_id=${sessionId}`).then(r => setCustomerData(r.data))
+            axios.get(`${process.env.BACKEND_URL}/Stripe/order_info?session_id=${sessionId}`).then(r => setCustomerData(r.data)).catch(e => console.log(e))
 
             // console.log(customer, session)
         }

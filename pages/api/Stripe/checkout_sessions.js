@@ -31,12 +31,14 @@ export default async function handler(req, res) {
             const session = await stripe.checkout.sessions.create({
                 line_items: productList,
                 mode: 'payment',
+
+                // {CHECKOUT_SESSION_ID} will return session id once completed to recieve information after completion
+
                 success_url: `${req.headers.origin}/Cart/Success/?session_id={CHECKOUT_SESSION_ID}`,
-                cancel_url: `${req.headers.origin}/Cart/Cancel/?canceled=true`,
+                cancel_url: `${req.headers.origin}/Cart/Cancel/?session_id={CHECKOUT_SESSION_ID}`,
             });
             res.json({ 'url': session.url })
-            // return { 'url': session.url }
-            // res.redirect(303, session.url);
+
         } catch (err) {
             res.status(err.statusCode || 500).json(err.message);
         }

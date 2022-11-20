@@ -29,7 +29,6 @@ const Shop = (props) => {
         }
     }
 
-    console.log(props.products)
 
     return (
         <div style={style}>

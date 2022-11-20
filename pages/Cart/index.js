@@ -68,7 +68,7 @@ const Cart = () => {
         let sessionId = query.get('session_id')
 
         if (sessionId) {
-            const { customer, session } = axios.get(`${process.env.BACKEND_URL}/Stripe/order_info?session_id=${sessionId}`).then(r => console.log(r.data))
+            const { customer, session } = axios.get(`${process.env.BACKEND_URL}/Stripe/order_info?session_id=${sessionId}`).then(r => console.log(r.data)).catch(e => console.log(e))
 
             console.log(customer, session)
         }

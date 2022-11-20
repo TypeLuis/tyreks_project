@@ -16,6 +16,20 @@ const Header = () => {
 
     const router = useRouter()
 
+
+    useEffect(() => {
+        console.log(router)
+        console.log(cartLength)
+
+        const cart = localStorage.getItem('cart')
+        if (cart) {
+
+            const secret = process.env.TOKEN_KEY;
+
+            jwtVerify(cart, new TextEncoder().encode(secret)).then(r => setCartLength(r.payload.message.length)).catch(e => console.log(e))
+        }
+    }, [router.asPath])
+
     const navigator = (e) => {
         // console.log(e)
         e.target.textContent === 'Home' ? router.push(`/`) : router.push(`/${e.target.textContent}`)
