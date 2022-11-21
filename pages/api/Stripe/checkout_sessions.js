@@ -8,12 +8,11 @@ export default async function handler(req, res) {
     const secret = process.env.TOKEN_KEY;
     const shoppingCart = await (await jwtVerify(cart, new TextEncoder().encode(secret))).payload.message
 
-    let productList = []
-    let result
+    let promises = []
+    let productList
     try {
-
+        // Creates promises for each item then resolve promises from every item in array
         shoppingCart.map(async (item, i) => {
-            const priceData = jwtVerify(item.priceToken, new TextEncoder().encode(secret)).then(r => r.payload.message)
             const promise = new Promise(async (resolve, reject) => {
 
                 try {
@@ -26,24 +25,10 @@ export default async function handler(req, res) {
                 } catch (error) { reject(error) }
 
             })
-            productList.push(promise)
-            // const obj = {
-            //     // 'price_data': {
-            //     //     'currency': 'usd',
-            //     //     'product_data': {
-            //     //         'name': item.name,
-            //     //     },
-            //     //     'unit_amount': item.price * 100,
-            //     // },
-            //     'price': priceData,
-            //     // 'price': "price_1LVHPoCqHz0TiTrq0rcHx43G",
-            //     'quantity': item.quantity,
-            // }
-
-            // return obj
-
+            promises.push(promise)
         })
-        result = await Promise.all(productList).then(r => r).catch(error => { throw error })
+
+        productList = await Promise.all(promises).then(r => r).catch(error => { throw error })
     } catch (error) {
         console.log(error)
     }
@@ -51,9 +36,9 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         try {
             // Create Checkout Sessions from body params.
-            console.log(result)
+            console.log(productList)
             const session = await stripe.checkout.sessions.create({
-                line_items: result,
+                line_items: productList,
                 mode: 'payment',
 
 
