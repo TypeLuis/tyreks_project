@@ -28,8 +28,10 @@ const Success = () => {
                     {/* {customerData.customer.email} */}
                     <h1>Thank you for your Order!</h1>
                     <ul>
-                        <li>Name: <span>{customerData.customer.name}</span></li>
-                        <li>Email: <span>{customerData.customer.email}</span></li>
+                        {/* <li>Name: <span>{customerData.customer.name}</span></li>
+                        <li>Email: <span>{customerData.customer.email}</span></li> */}
+                        <li>Name: <span>{customerData.session.customer_details.name}</span></li>
+                        <li>Email: <span>{customerData.session.customer_details.email}</span></li>
                     </ul>
 
                     <ul>

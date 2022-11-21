@@ -35,3 +35,5 @@ export default async function handler(req, res) {
         res.status(200).json({ 'event': event.type });
     }
 }
+
+// stripe listen --forward-to localhost:3000/api/Stripe/webhook
