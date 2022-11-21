@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Card from '../../components/Card'
 import classes from '../../styles/Shop.module.scss'
 
@@ -28,6 +28,10 @@ const Shop = (props) => {
             console.log(error.response.data.Message, error.response.status)
         }
     }
+
+    useEffect(() => {
+        console.log(props.result)
+    }, [])
 
 
     return (
