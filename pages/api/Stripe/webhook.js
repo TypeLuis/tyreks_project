@@ -1,19 +1,34 @@
-const stripe = require('stripe')(process.env.Stripe_Test_Key);
+// https://codeytek.com/create-stripe-checkout-in-next-js-stripe-session-stripe-webhook/
+const Stripe = require('stripe');
+import { buffer } from "micro"
 import { jwtVerify } from 'jose'
 
+const stripe = new Stripe(process.env.Stripe_Test_Key, {
+    apiVersion: '2020-08-27'
+});
+
 const endpointSecret = process.env.endpointSecret
+
+export const config = {
+    api: {
+        bodyParser: false,
+    },
+};
 
 export default async function handler(req, res) {
 
     if (req.method === 'POST') {
         const sig = req.headers['stripe-signature'];
+        const buf = await buffer(req);
 
         let event;
+        console.log(buf)
 
         try {
-            event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+            event = stripe.webhooks.constructEvent(buf, sig, endpointSecret);
         } catch (err) {
-            res.status(400).send(`Webhook Error: ${err.message}`);
+            console.log('error', err)
+            res.status(401).send(`Webhook Error: ${err.message}`);
             return;
         }
 
