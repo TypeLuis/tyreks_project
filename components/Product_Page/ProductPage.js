@@ -68,6 +68,8 @@ const ProductPage = (props) => {
 
                 maxQuantity={props.maxQuantity ? props.maxQuantity : 10}
 
+                priceToken={props.priceToken ? props.priceToken : null}
+
             ></Product>
         </div>
     )
@@ -338,7 +340,8 @@ const Product = (props) => {
                 'price': props.originalPrice,
                 'quantity': counter,
                 'image': props.image,
-                'maxQuantity': props.maxQuantity
+                'maxQuantity': props.maxQuantity,
+                'priceToken': props.priceToken
             }
 
             addItem(shopItem)
@@ -360,7 +363,8 @@ const Product = (props) => {
                     'price': props.originalPrice,
                     'quantity': counter,
                     'image': props.image,
-                    'maxQuantity': props.maxQuantity
+                    'maxQuantity': props.maxQuantity,
+                    'priceToken': props.priceToken
                 }
             ]
             setCartLength(shopItem.length)

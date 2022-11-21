@@ -12,7 +12,7 @@ const Page = (props) => {
     const router = useRouter()
     const query = router.query.page
     // console.log(router.query.page)
-    const { all_images, name, price } = props.product
+    const { all_images, name, price, price_token } = props.product
     const maxQuantity = props.product.metadata.maxQuantity
 
     console.log(maxQuantity)
@@ -27,6 +27,7 @@ const Page = (props) => {
                 name={name}
                 originalPrice={price}
                 maxQuantity={maxQuantity}
+                priceToken={price_token}
             />
 
         </div>

@@ -42,7 +42,8 @@ Functions.getProductObject = async (product) => {
     const obj = {
         ...product,
         price: price,
-        all_images: checkImages ? checkImages.split(',') : product.images
+        all_images: checkImages ? checkImages.split(',') : product.images,
+        price_token: await Functions.getToken(product.default_price)
     }
 
     return obj

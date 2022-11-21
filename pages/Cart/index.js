@@ -82,7 +82,8 @@ const Cart = () => {
                         <div className={classes.productList}>
 
                             {cartItems.map((item, i) => {
-
+                                // const secret = process.env.TOKEN_KEY;
+                                // console.log(jwtVerify(item.priceToken, new TextEncoder().encode(secret)).then(r => console.log(r)))
                                 return (
                                     <div key={i} className={classes.product}>
                                         <img src={item.image} />
