@@ -19,22 +19,22 @@ const Cart = () => {
 
         const shoppingCart = await (await jwtVerify(cart, new TextEncoder().encode(secret))).payload.message
 
-        let res
+        let updatedCart
 
         if (e.target.value === 'Remove') {
             // https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
-            res = shoppingCart.filter(item => item.name !== product.name)
+            updatedCart = shoppingCart.filter(item => item.name !== product.name)
         }
         else {
 
             product.quantity = Number(e.target.value)
 
             // https://stackoverflow.com/questions/37585309/replacing-objects-in-array
-            res = shoppingCart.map(obj => [product].find(o => o.name === obj.name) || obj)
+            updatedCart = shoppingCart.map(obj => [product].find(o => o.name === obj.name) || obj)
         }
 
-        setCartItems(res)
-        setCartLength(res.length)
+        setCartItems(updatedCart)
+        setCartLength(updatedCart.length)
 
         const token = await Functions.getToken(res)
 
