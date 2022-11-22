@@ -49,10 +49,11 @@ export default async function handler(req, res) {
                 const sessionIntent = event.data.object;
 
                 // Retrieve the Checkout Session with expand
+                // https://stackoverflow.com/questions/70603893/how-to-get-product-and-quantity-information-from-payment-intent-succeeded-event
                 const session = await stripe.checkout.sessions.retrieve(sessionIntent.id, {
                     expand: ["line_items"]
                 });
-                console.log('session', session)
+                console.log('session', session.line_items.data)
                 break
             default:
                 console.log(`Unhandled event type ${event.type}`);
