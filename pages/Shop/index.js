@@ -54,7 +54,7 @@ const Shop = (props) => {
 
 export default Shop
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     const products = await Functions.getProducts()
 
 
