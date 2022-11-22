@@ -55,13 +55,14 @@ export const getStaticPaths = async () => {
 }
 
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
     const products = await Functions.getProducts()
     const product = products.filter((product) => product.name === context.params.page)[0]
 
     const obj = await Functions.getProductObject(product)
 
     return {
-        'props': { 'product': obj }
+        'props': { 'product': obj },
+        revalidate: 1
     }
 }
