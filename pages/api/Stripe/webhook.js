@@ -38,18 +38,15 @@ export default async function handler(req, res) {
                 const paymentIntent = event.data.object;
                 // Then define and call a function to handle the event payment_intent.succeeded
 
-                const payment = await stripe.paymentIntents.create({
-                    amount: paymentIntent.amount,
-                    currency: paymentIntent.currency,
-                    payment_method_types: paymentIntent.payment_method_types,
-                    receipt_email: paymentIntent.receipt_email,
-                });
-
+                const payment = await stripe.paymentIntents.confirm(
+                    paymentIntent.id,
+                );
 
                 console.log('res', res)
                 console.log('req', buf)
                 console.log('event', event)
                 console.log('paymentt', paymentIntent)
+                console.log('final', payment)
                 break;
             // ... handle other event types
             default:
