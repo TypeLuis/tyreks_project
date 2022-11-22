@@ -53,6 +53,16 @@ export default async function handler(req, res) {
                 const session = await stripe.checkout.sessions.retrieve(sessionIntent.id, {
                     expand: ["line_items"]
                 });
+                session.line_items.data.map(async (item, i) => {
+                    const retrieved = await stripe.products.retrieve(
+                        item.price.product,
+                    );
+                    console.log(retrieved)
+                    // const product = await stripe.products.update(
+                    //     item.price.product,
+                    //     { metadata: { maxQuantity: '6735' } }
+                    // );
+                })
                 console.log('session', session.line_items.data)
                 break
             default:
