@@ -57,11 +57,13 @@ export default async function handler(req, res) {
                     const retrieved = await stripe.products.retrieve(
                         item.price.product,
                     );
-                    console.log(retrieved)
-                    // const product = await stripe.products.update(
-                    //     item.price.product,
-                    //     { metadata: { maxQuantity: '6735' } }
-                    // );
+                    const maxQuantity = Number(retrieved.metadata.maxQuantity)
+                    const product = await stripe.products.update(
+                        item.price.product,
+                        { metadata: { maxQuantity: maxQuantity - item.quantity } }
+                    );
+
+                    console.log('product', product)
                 })
                 console.log('session', session.line_items.data)
                 break
