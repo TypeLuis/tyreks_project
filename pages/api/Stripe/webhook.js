@@ -38,15 +38,16 @@ export default async function handler(req, res) {
                 const paymentIntent = event.data.object;
                 // Then define and call a function to handle the event payment_intent.succeeded
 
-                const payment = await stripe.paymentIntents.confirm(
-                    paymentIntent.id,
-                );
+                // Retrieve the Checkout Session with expand
+                const session = await stripe.checkout.sessions.retrieve(paymentIntent.id, {
+                    expand: ["line_items"]
+                });
 
                 console.log('res', res)
                 console.log('req', buf)
                 console.log('event', event)
                 console.log('paymentt', paymentIntent)
-                console.log('final', payment)
+                console.log('session', session)
                 break;
             // ... handle other event types
             default:
