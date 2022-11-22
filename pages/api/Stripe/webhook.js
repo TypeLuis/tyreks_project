@@ -37,6 +37,7 @@ export default async function handler(req, res) {
             case 'payment_intent.succeeded':
                 const paymentIntent = event.data.object;
                 // Then define and call a function to handle the event payment_intent.succeeded
+                console.log('res', res)
                 console.log('req', buf)
                 console.log('event', event)
                 console.log('paymentt', paymentIntent)
