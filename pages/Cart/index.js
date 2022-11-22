@@ -33,7 +33,6 @@ const Cart = () => {
             res = shoppingCart.map(obj => [product].find(o => o.name === obj.name) || obj)
         }
 
-        console.log(res)
         setCartItems(res)
         setCartLength(res.length)
 
@@ -62,15 +61,15 @@ const Cart = () => {
 
         const secret = process.env.TOKEN_KEY;
 
-        jwtVerify(cart, new TextEncoder().encode(secret)).then(item => setCartItems(item.payload.message))
+        if (cart) {
+            jwtVerify(cart, new TextEncoder().encode(secret)).then(item => setCartItems(item.payload.message))
+        }
 
         const query = new URLSearchParams(window.location.search);
         let sessionId = query.get('session_id')
 
         if (sessionId) {
-            const { customer, session } = axios.get(`${process.env.BACKEND_URL}/Stripe/order_info?session_id=${sessionId}`).then(r => console.log(r.data)).catch(e => console.log(e))
-
-            console.log(customer, session)
+            axios.get(`${process.env.BACKEND_URL}/Stripe/order_info?session_id=${sessionId}`).then(r => console.log(r.data)).catch(e => console.log(e))
         }
 
     }, [])

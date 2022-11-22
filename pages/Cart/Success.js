@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
 import classes from '../../styles/SuccessOrCancel.module.scss'
+import { AppContext } from '../../context'
 
 const Success = () => {
     const [customerData, setCustomerData] = useState()
+    const { cartState } = useContext(AppContext)
+    const [cartLength, setCartLength] = cartState
 
     useEffect(() => {
 
@@ -11,7 +14,11 @@ const Success = () => {
         let sessionId = query.get('session_id')
 
         if (sessionId) {
-            axios.get(`${process.env.BACKEND_URL}/Stripe/order_info?session_id=${sessionId}`).then(r => setCustomerData(r.data)).catch(e => console.log(e))
+            axios.get(`${process.env.BACKEND_URL}/Stripe/order_info?session_id=${sessionId}`).then(r => {
+                setCustomerData(r.data)
+                localStorage.removeItem('cart')
+                setCartLength(0)
+            }).catch(e => console.log(e))
 
             // console.log(customer, session)
         }
