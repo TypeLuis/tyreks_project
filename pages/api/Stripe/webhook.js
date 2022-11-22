@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         const buf = await buffer(req);
 
         let event;
-        console.log(buf)
+        // console.log(buf)
 
         try {
             event = stripe.webhooks.constructEvent(buf, sig, endpointSecret);
@@ -37,6 +37,8 @@ export default async function handler(req, res) {
             case 'payment_intent.succeeded':
                 const paymentIntent = event.data.object;
                 // Then define and call a function to handle the event payment_intent.succeeded
+                console.log('req', buf)
+                console.log('event', event)
                 console.log('paymentt', paymentIntent)
                 break;
             // ... handle other event types
