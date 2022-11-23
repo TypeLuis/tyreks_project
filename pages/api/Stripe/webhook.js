@@ -1,6 +1,6 @@
 // https://codeytek.com/create-stripe-checkout-in-next-js-stripe-session-stripe-webhook/
 const Stripe = require('stripe');
-// import { buffer } from "micro"
+import { buffer } from "micro"
 import { jwtVerify } from 'jose'
 import getRawBody from "raw-body"
 
@@ -15,7 +15,7 @@ export const config = {
 };
 
 
-async function buffer(readable) {
+async function requestBuffer(readable) {
     const chunks = [];
     for await (const chunk of readable) {
         chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
@@ -28,15 +28,16 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         console.log(req.headers)
         const sig = req.headers['stripe-signature'];
-        const buff = await buffer(req)
-        // const buf = await buffer(req);
+        // const buff = await requestBuffer(req)
+        const buf = await buffer(req);
+        const payload = buf.toString();
         // const rawBody = await getRawBody(req)
 
         let event;
         // console.log(buf)
 
         try {
-            event = stripe.webhooks.constructEvent(buff, sig, endpointSecret);
+            event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
         } catch (err) {
             console.log('error', err)
             res.status(401).send(`Webhook Error: ${err.message}`);
@@ -85,7 +86,7 @@ export default async function handler(req, res) {
         console.log(`Unhandled event type ${event.type}`);
 
         // Return a 200 response to acknowledge receipt of the event
-        res.status(200).json({ 'event': event.type });
+        res.json({ received: true });
     }
 }
 
