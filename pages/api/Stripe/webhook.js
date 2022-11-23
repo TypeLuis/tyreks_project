@@ -2,6 +2,7 @@
 const Stripe = require('stripe');
 import { buffer } from "micro"
 import { jwtVerify } from 'jose'
+import getRawBody from "raw-body"
 
 const stripe = new Stripe(process.env.Stripe_Test_Key, {
     apiVersion: '2020-08-27'
@@ -20,13 +21,14 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         console.log(req.headers)
         const sig = req.headers['stripe-signature'];
-        const buf = await buffer(req);
+        // const buf = await buffer(req);
+        const rawBody = await getRawBody(req)
 
         let event;
         // console.log(buf)
 
         try {
-            event = stripe.webhooks.constructEvent(buf, sig, endpointSecret);
+            event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
         } catch (err) {
             console.log('error', err)
             res.status(401).send(`Webhook Error: ${err.message}`);
