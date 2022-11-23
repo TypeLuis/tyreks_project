@@ -4,9 +4,7 @@ const Stripe = require('stripe');
 import { jwtVerify } from 'jose'
 import getRawBody from "raw-body"
 
-const stripe = new Stripe(process.env.Stripe_Test_Key, {
-    apiVersion: '2020-08-27'
-});
+const stripe = new Stripe(process.env.Stripe_Test_Key);
 
 const endpointSecret = process.env.endpointSecret
 
