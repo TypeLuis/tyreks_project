@@ -50,6 +50,7 @@ export const getStaticPaths = async () => {
 
     return {
         'paths': paths,
+        // https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration
         'fallback': 'blocking'
     }
 }
@@ -63,6 +64,6 @@ export const getStaticProps = async (context) => {
 
     return {
         'props': { 'product': obj },
-        revalidate: 10
+        revalidate: 1
     }
 }
