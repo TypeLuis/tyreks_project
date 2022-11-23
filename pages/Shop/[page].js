@@ -63,6 +63,6 @@ export const getStaticProps = async (context) => {
 
     return {
         'props': { 'product': obj },
-        revalidate: 1
+        // revalidate: 1
     }
 }
