@@ -1,0 +1,12 @@
+.pageError {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        span {
+            color: red;
+        }
+    }
+}
