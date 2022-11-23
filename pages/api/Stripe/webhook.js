@@ -18,6 +18,7 @@ export const config = {
 export default async function handler(req, res) {
 
     if (req.method === 'POST') {
+        console.log(req.headers)
         const sig = req.headers['stripe-signature'];
         const buf = await buffer(req);
 
@@ -41,7 +42,7 @@ export default async function handler(req, res) {
                 // console.log('res', res)
                 // console.log('req', buf)
                 // console.log('event', event)
-                console.log('paymentt', paymentIntent)
+                // console.log('paymentt', paymentIntent)
                 // console.log('session', session)
                 break;
             // ... handle other event types
@@ -63,7 +64,7 @@ export default async function handler(req, res) {
                         { metadata: { maxQuantity: maxQuantity - item.quantity } }
                     );
 
-                    console.log('product', product)
+                    // console.log('product', product)
                 })
                 console.log('session', session.line_items.data)
                 break
