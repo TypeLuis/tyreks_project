@@ -32,18 +32,26 @@ Functions.getProducts = async () => {
 Functions.getProductObject = async (product) => {
     const token = await Functions.getToken()
 
-    const response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${product.default_price}`, {
-        headers: {
-            'x-access-token': token
+    let response
+    let obj
+    try {
+        response = await axios.get(`${process.env.BACKEND_URL}/Stripe/price?price_data=${product.default_price}`, {
+            headers: {
+                'x-access-token': token
+            }
+        })
+
+        const price = response.data.price.unit_amount / 100
+        const checkImages = product.metadata.images
+        obj = {
+            ...product,
+            price: price,
+            all_images: checkImages ? checkImages.split(',') : product.images,
+            price_token: await Functions.getToken(product.default_price)
         }
-    })
-    const price = response.data.price.unit_amount / 100
-    const checkImages = product.metadata.images
-    const obj = {
-        ...product,
-        price: price,
-        all_images: checkImages ? checkImages.split(',') : product.images,
-        price_token: await Functions.getToken(product.default_price)
+
+    } catch (error) {
+        obj = { 'error': error.message }
     }
 
     return obj
