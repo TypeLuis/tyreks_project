@@ -8,6 +8,9 @@ const stripe = new Stripe(process.env.Stripe_Test_Key);
 
 const endpointSecret = process.env.endpointSecret
 
+
+// Tell Next.js to disable parsing body by default,
+// as Stripe requires the raw body to validate the event
 export const config = {
     api: {
         bodyParser: false,
@@ -29,16 +32,16 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         console.log(req.headers)
         const sig = req.headers['stripe-signature'];
-        const buff = await requestBuffer(req)
+        // const buff = await requestBuffer(req)
         // const buf = await buffer(req);
-        const payload = buff.toString();
-        // const rawBody = await getRawBody(req)
+        // const payload = buff.toString();
+        const rawBody = await getRawBody(req)
 
         let event;
         // console.log(buf)
 
         try {
-            event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+            event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
         } catch (err) {
             console.log('error', err)
             res.status(401).send(`Webhook Error: ${err.message}`);
@@ -51,11 +54,6 @@ export default async function handler(req, res) {
                 const paymentIntent = event.data.object;
                 // Then define and call a function to handle the event payment_intent.succeeded
 
-                // console.log('res', res)
-                // console.log('req', buf)
-                // console.log('event', event)
-                // console.log('paymentt', paymentIntent)
-                // console.log('session', session)
                 break;
             // ... handle other event types
             case 'checkout.session.completed':
@@ -86,8 +84,11 @@ export default async function handler(req, res) {
 
         console.log(`Unhandled event type ${event.type}`);
 
-        // Return a 200 response to acknowledge receipt of the event
+        // Return a response to acknowledge receipt of the event.
         res.json({ received: true });
+    } else {
+        response.setHeader("Allow", "POST");
+        response.status(405).end("Method Not Allowed");
     }
 }
 
