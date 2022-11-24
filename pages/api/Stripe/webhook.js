@@ -32,21 +32,23 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         console.log(req.headers)
         const sig = req.headers['stripe-signature'];
-        // const buff = await requestBuffer(req)
+        const buff = await requestBuffer(req)
         // const buf = await buffer(req);
         // const payload = buff.toString();
-        const rawBody = await getRawBody(req)
+        // const rawBody = await getRawBody(req)
 
         let event;
         // console.log(buf)
 
         try {
-            event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
+            event = stripe.webhooks.constructEvent(buff, sig, endpointSecret);
         } catch (err) {
             console.log('error', err)
             res.status(401).send(`Webhook Error: ${err.message}`);
             return;
         }
+
+        console.log(event)
 
         // Handle the event
         switch (event.type) {
@@ -76,13 +78,13 @@ export default async function handler(req, res) {
 
                     // console.log('product', product)
                 })
-                console.log('session', session.line_items.data)
+                // console.log('session', session.line_items.data)
                 break
             default:
-                console.log(`Unhandled event type ${event.type}`);
+            // console.log(`Unhandled event type ${event.type}`);
         }
 
-        console.log(`Unhandled event type ${event.type}`);
+        // console.log(`Unhandled event type ${event.type}`);
 
         // Return a response to acknowledge receipt of the event.
         res.json({ received: true });
