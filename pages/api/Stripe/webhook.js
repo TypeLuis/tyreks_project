@@ -15,6 +15,7 @@ export const config = {
 };
 
 
+// https://github.com/stripe/stripe-node/issues/1294
 async function requestBuffer(readable) {
     const chunks = [];
     for await (const chunk of readable) {
@@ -28,9 +29,9 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         console.log(req.headers)
         const sig = req.headers['stripe-signature'];
-        // const buff = await requestBuffer(req)
-        const buf = await buffer(req);
-        const payload = buf.toString();
+        const buff = await requestBuffer(req)
+        // const buf = await buffer(req);
+        const payload = buff.toString();
         // const rawBody = await getRawBody(req)
 
         let event;
