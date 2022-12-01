@@ -12,7 +12,8 @@
         position: absolute;
         left: 0;
         height: min-content;
-
+        // box-shadow: 5px 5px 5px red;
+        filter: drop-shadow(3px 3px 5px rgb(183, 0, 255));
 
         &:hover {
             cursor: pointer;
@@ -26,6 +27,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        filter: drop-shadow(2px 2px 2px rgb(255, 81, 0));
 
         &::before {
             z-index: 1;

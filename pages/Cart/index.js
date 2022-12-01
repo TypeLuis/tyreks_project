@@ -36,7 +36,7 @@ const Cart = () => {
         setCartItems(updatedCart)
         setCartLength(updatedCart.length)
 
-        const token = await Functions.getToken(res)
+        const token = await Functions.getToken(updatedCart)
 
         localStorage.setItem('cart', token)
 
