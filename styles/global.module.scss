@@ -15,7 +15,7 @@
 
         transition: height 1s ease-in;
         width: 10%;
-        background-color: #385300;
+        background-color: #268026;
     }
 
     .middle {
@@ -24,7 +24,7 @@
         min-height: 100vh;
         width: 80%;
         max-width: 80%;
-        background: linear-gradient(240deg, beige, 35%, lime);
+        background: linear-gradient(240deg, beige, 35%, #00ff00);
     }
 
     .right {
@@ -36,7 +36,7 @@
 
         transition: height 1s ease-in;
         width: 10%;
-        background-color: #385300;
+        background-color: #268026;
     }
 
     @media screen and (max-width : 600px) {
