@@ -53,4 +53,16 @@
       }
     }
   }
+
+  @media screen and (max-width: 956px) {
+    .banner {
+      flex-direction: column;
+
+      .content {
+        align-items: flex-start;
+        margin-left: 5%;
+      }
+
+    }
+  }
 }
