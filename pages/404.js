@@ -5,7 +5,7 @@ const ErrorPage = () => {
     return (
         <div>
             {/* <ErrorBo */}
-            hi Error
+            This page does not exist
         </div>
     )
 }

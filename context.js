@@ -1,28 +1,5 @@
 // How to create conext https://www.netlify.com/blog/2020/12/01/using-react-context-for-state-management-in-next.js/
 
-// import { createContext, useContext, useState } from 'react';
-
-// const AppContext = createContext();
-
-// export function AppWrapper({ children }) {
-//     const [cartLength, setCartLength] = useState(0)
-
-//     let sharedState = {
-//         cartState: [cartLength, setCartLength]
-//     }
-
-//     return (
-//         <AppContext.Provider value={sharedState}>
-//             {children}
-//         </AppContext.Provider>
-//     );
-// }
-
-// export function useAppContext() {
-//     return useContext(AppContext);
-// }
-
-
 
 import { useState, createContext } from 'react'
 
