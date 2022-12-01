@@ -82,8 +82,8 @@ export default async function handler(req, res) {
         // Return a response to acknowledge receipt of the event.
         res.json({ received: true });
     } else {
-        response.setHeader("Allow", "POST");
-        response.status(405).end("Method Not Allowed");
+        res.setHeader("Allow", "POST");
+        res.status(405).end("Method Not Allowed");
     }
 }
 

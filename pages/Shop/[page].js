@@ -47,6 +47,18 @@ const Page = (props) => {
 export default Page
 
 
+
+export const getServerSideProps = async (context) => {
+    const products = await Functions.getProducts()
+    const product = products.filter((product) => product.name === context.params.page)[0]
+    const obj = await Functions.getProductObject(product)
+
+    return {
+        'props': { 'product': obj },
+    }
+}
+
+
 // export const getStaticPaths = async () => {
 
 //     const products = await Functions.getProducts()
@@ -77,13 +89,3 @@ export default Page
 //         revalidate: 1
 //     }
 // }
-
-export const getServerSideProps = async (context) => {
-    const products = await Functions.getProducts()
-    const product = products.filter((product) => product.name === context.params.page)[0]
-    const obj = await Functions.getProductObject(product)
-
-    return {
-        'props': { 'product': obj },
-    }
-}
