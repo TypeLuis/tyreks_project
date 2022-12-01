@@ -10,7 +10,32 @@
     display: flex;
     background-color: aqua;
     width: 100%;
-    justify-content: end;
+    justify-content: space-evenly;
+
+
+    .content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .button {
+        font-size: large;
+        font-weight: bolder;
+        border: 1px solid green;
+        width: max-content;
+        padding: 1em;
+        // transition: 1s ease-in;
+        background-color: green;
+
+        &:hover {
+          cursor: pointer;
+          background-color: rgb(3, 94, 3);
+          // color: black;
+        }
+      }
+    }
 
     .image {
       // margin-top: 100px;
@@ -19,10 +44,6 @@
 
       img {
         position: relative;
-        // display: flex;
-        // left: 25%;
-        // justify-content: end;
-        // align-items: flex-end;
         max-width: 600px;
         min-width: 200px;
         // object-fit: contain;

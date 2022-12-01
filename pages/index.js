@@ -16,7 +16,8 @@ export default function Home() {
       <div className={classes.banner}>
 
         <div className={classes.content}>
-
+          <h1>Zombie Killer Death Trap</h1>
+          <p className={classes.button}>Shop for more</p>
         </div>
 
 
