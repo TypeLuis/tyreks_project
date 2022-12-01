@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import classes from '../styles/Home.module.scss'
 import transparent_image from '../Assets/Fleece/Fleece transparent.png'
+import TextDiv from '../components/TextDiv/TextDiv.js'
 
 export default function Home() {
   return (
@@ -26,6 +27,24 @@ export default function Home() {
           <img src='https://i.imgur.com/B5EM5a9.png' />
         </div>
       </div>
+
+      <TextDiv
+
+        title={'title'}
+
+        textOne={{
+          title: 'Test Title',
+          summary: `I am not sure if App Engine, from Google Cloud, is parsing the request body before I can even touch it.
+My only reference point is that if I console.log out the complete request, the body part is always already parsed as a JSON, at least it seems like it.`
+        }}
+
+        textTwo={{
+          title: 'Test Title',
+          summary: `I am not sure if App Engine, from Google Cloud, is parsing the request body before I can even touch it.
+My only reference point is that if I console.log out the complete request, the body part is always already parsed as a JSON, at least it seems like it.`
+        }}
+
+      />
     </div>
   )
 }

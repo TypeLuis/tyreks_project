@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
+
+.main {
+  text-align: center;
+  background-color: #b1b1b1;
+  margin-block: 2em;
+  color: black;
+
+  h2 {
+    padding: 2em 0 0 0;
+    font-size: xx-large;
+    margin: 0;
+    font-family: 'Cinzel Decorative', cursive;
+  }
+
+  .textSplit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // justify-content: space-between;
+    gap: 2.5em;
+    padding: 3em;
+
+    div {
+      //   width: Min(50ch, 500px);
+      width: Min(50%, 600px);
+
+      h3 {
+        font-size: x-large;
+        font-family: 'Cinzel Decorative', cursive;
+      }
+
+      p {
+        color: black;
+        font-size: 18px;
+        font-size: Clamp(0.9em, 5vw, 1.3em);
+        line-height: 1.5em;
+        font-family: "Lora", serif;
+      }
+    }
+
+    @media screen and (max-width: 770px) {
+      flex-direction: column;
+      padding: 1.5em;
+
+      div {
+        width: 100%;
+      }
+    }
+  }
+
+
+  .split1.single {
+    width: Min(80%, 80ch);
+  }
+}
