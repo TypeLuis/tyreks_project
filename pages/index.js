@@ -3,8 +3,9 @@ import Image from 'next/image'
 import classes from '../styles/Home.module.scss'
 import transparent_image from '../Assets/Fleece/Fleece transparent.png'
 import TextDiv from '../components/TextDiv/TextDiv.js'
-
+import { useRouter } from 'next/router'
 export default function Home() {
+  const router = useRouter()
   return (
     <div className={classes.container}>
       <Head>
@@ -18,7 +19,7 @@ export default function Home() {
 
         <div className={classes.content}>
           <h1>Zombie Killer Death Trap</h1>
-          <p className={classes.button}>Shop for more</p>
+          <p onClick={() => { router.push('Shop') }} className={classes.button}>Shop for more</p>
         </div>
 
 
@@ -45,6 +46,8 @@ My only reference point is that if I console.log out the complete request, the b
         }}
 
       />
+
+
     </div>
   )
 }
