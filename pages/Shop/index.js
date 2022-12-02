@@ -47,7 +47,7 @@ const Shop = (props) => {
                 )
             })}
 
-            <h1 onClick={() => { handleClick() }}>test</h1>
+            {/* <h1 onClick={() => { handleClick() }}>test</h1> */}
         </div>
     )
 }
