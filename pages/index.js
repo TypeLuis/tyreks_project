@@ -4,6 +4,8 @@ import classes from '../styles/Home.module.scss'
 import transparent_image from '../Assets/Fleece/Fleece transparent.png'
 import TextDiv from '../components/TextDiv/TextDiv.js'
 import { useRouter } from 'next/router'
+
+
 export default function Home() {
   const router = useRouter()
   return (

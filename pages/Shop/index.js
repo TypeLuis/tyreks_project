@@ -43,6 +43,8 @@ const Shop = (props) => {
                     <div key={i}>
 
                         <Card images={item.all_images} name={item.name} price={item.price} />
+
+
                     </div>
                 )
             })}
