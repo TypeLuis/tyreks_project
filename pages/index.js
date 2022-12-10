@@ -33,7 +33,7 @@ export default function Home() {
 
       <TextDiv
 
-        title={'title'}
+        title={'test title'}
 
         textOne={{
           title: 'Test Title',
