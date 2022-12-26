@@ -23,7 +23,10 @@ Functions.getProducts = async () => {
         }
     })
 
-    const products = response.data.products.data
+    const objs = response.data.products.data
+
+    // filters products that aren't active
+    const products = objs.filter((product) => product.active === true)
 
     return products
 }
