@@ -17,7 +17,9 @@ export default function Home() {
       </Head>
 
       {/* <Image src={transparent_image} /> */}
-      <div className={classes.banner}>
+
+      
+      {/* <div className={classes.banner}>
 
         <div className={classes.content}>
           <h1>Zombie Killer Death Trap</h1>
@@ -29,9 +31,9 @@ export default function Home() {
 
           <img src='https://i.imgur.com/B5EM5a9.png' />
         </div>
-      </div>
+      </div> */}
 
-      <TextDiv
+      {/* <TextDiv
 
         title={'test title'}
 
@@ -47,7 +49,7 @@ My only reference point is that if I console.log out the complete request, the b
 My only reference point is that if I console.log out the complete request, the body part is always already parsed as a JSON, at least it seems like it.`
         }}
 
-      />
+      /> */}
 
 
     </div>
