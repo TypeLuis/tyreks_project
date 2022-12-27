@@ -8,9 +8,9 @@ import Functions from '../../Functions'
 
 
 const Shop = (props) => {
-    const style = {
+    // const style = {
         // 'background-color': 'blue'
-    }
+    // }
 
     const handleClick = async () => {
         try {
@@ -29,9 +29,9 @@ const Shop = (props) => {
         }
     }
 
-    useEffect(() => {
-        console.log(props.result)
-    }, [])
+    // useEffect(() => {
+    //     console.log(props.result)
+    // }, [])
 
 
     return (
