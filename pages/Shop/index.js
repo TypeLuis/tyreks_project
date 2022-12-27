@@ -35,7 +35,7 @@ const Shop = (props) => {
 
 
     return (
-        <div style={style}>
+        <div >
             {props.result.map((item, i) => {
 
                 return (
