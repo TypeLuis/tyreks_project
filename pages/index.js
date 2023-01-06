@@ -10,7 +10,7 @@ export default function Home() {
   const router = useRouter()
   return (
     <div className={classes.container}>
-      
+
 
       <Head>
         <title>Zombie Killer Death Trap</title>
@@ -19,6 +19,16 @@ export default function Home() {
       </Head>
 
       <>Home Page</>
+
+
+
+      <div className={classes.Flyer}>
+
+
+        <img src='https://i.imgur.com/mmhYlyt.jpg' alt='Flyer' />
+        <img src='https://i.imgur.com/lZhlg02.jpg' alt='Flyer2' />
+      </div>
+
 
       {/* <Image src={transparent_image} /> */}
 
