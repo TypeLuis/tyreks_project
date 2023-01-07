@@ -1,14 +1,15 @@
 import React from 'react'
 import classes from '../styles/Footer.module.scss'
+import { FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <footer>
-            <div className='icons'>
+        <footer className={classes.footer}>
+            <div className={classes.icons}>
                 <ul>
-                    <li id='github'><a title='Github' href='https://github.com/TypeLuis' target="_blank" rel="noopener noreferrer"></a></li>
+                    <li id='github'><a title='Github' href='https://google.com' target="_blank" rel="noopener noreferrer"><i><FaInstagram /></i></a></li>
 
-                    <li id='github'><a title='Github' href='https://github.com/TypeLuis' target="_blank" rel="noopener noreferrer"></a></li>
+                    <li id='github'><a title='Github' href='https://google.com' target="_blank" rel="noopener noreferrer"><FaInstagram /></a></li>
                 </ul>
             </div>
         </footer>

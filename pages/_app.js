@@ -4,6 +4,7 @@ import classes from '../styles/global.module.scss'
 import { useRef, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { AppWrapper } from '../context'; // context.js
+import Footer from '../components/Footer'
 
 function MyApp({ Component, pageProps }) {
   const [height, setHeight] = useState()
@@ -55,10 +56,12 @@ function MyApp({ Component, pageProps }) {
 
             <Component setPageInfo={setPageInfo} pageInfo={pageInfo} {...pageProps} />
 
+            <Footer />
           </div>
 
           <div style={{ "height": height }} className={classes.right}>
           </div>
+
 
         </div>
       </AppWrapper>
