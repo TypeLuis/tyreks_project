@@ -1,6 +1,8 @@
 @mixin icons ($height, $width) {
     .icons {
+        position: relative;
         display: flex;
+        // left: 50%;
         // text-align: center;
         justify-content: center;
         // align-items: center;
@@ -94,5 +96,9 @@
 @media (max-width: 900px) {
     .footer {
         @include icons(60px, 63px);
+
+        .icons {
+            right: 3%;
+        }
     }
 }
