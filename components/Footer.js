@@ -7,9 +7,9 @@ const Footer = () => {
         <footer className={classes.footer}>
             <div className={classes.icons}>
                 <ul>
-                    <li id='github'><a title='Github' href='https://google.com' target="_blank" rel="noopener noreferrer"><i><FaInstagram /></i></a></li>
+                    <li id='github'><a className={classes.link} title='Github' href='https://google.com' target="_blank" rel="noopener noreferrer"><i><FaInstagram /></i></a></li>
 
-                    <li id='github'><a title='Github' href='https://google.com' target="_blank" rel="noopener noreferrer"><FaInstagram /></a></li>
+                    <li id='github'><a className={classes.link} title='Github' href='https://google.com' target="_blank" rel="noopener noreferrer"><FaInstagram /></a></li>
                 </ul>
             </div>
         </footer>

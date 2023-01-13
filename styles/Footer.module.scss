@@ -89,12 +89,14 @@
     .footer {
         width: 100%;
 
-        @include icons(80px, 83px);
+        // @include icons(80px, 83px);
+        @include icons(50px, 53px);
     }
 }
 
 @media (max-width: 900px) {
     .footer {
+        // @include icons(60px, 63px);
         @include icons(60px, 63px);
 
         .icons {
