@@ -52,13 +52,11 @@ const ProductPage = (props) => {
 
 
             <Product
-                desc={props.desc ? props.desc : `These low-profile sneakers are your perfect casual wear companion.
-                Featuring a durable rubber outer sole, they'll withstand everything
-                the weather can offer.`}
+                desc={props.desc ? props.desc : ``}
 
                 category={props.category ? props.category : 'Zombie Killer Death Trap'}
 
-                name={props.name ? props.name : 'Fall Limited Edition Sneakers'}
+                name={props.name ? props.name : ''}
 
                 originalPrice={props.originalPrice ? props.originalPrice : 250}
 
