@@ -27,7 +27,7 @@ export default function Home() {
 
         <img src='https://i.imgur.com/mmhYlyt.jpg' alt='Flyer' />
         <img src='https://i.imgur.com/lZhlg02.jpg' alt='Flyer2' />
-        <img src='https://imgur.com/a/rwNR2Ya' alt='Flyer3' />
+        <img src='https://i.imgur.com/PQiry0k.jpeg' alt='Flyer3' />
       </div>
 
 
